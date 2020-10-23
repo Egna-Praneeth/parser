@@ -1,0 +1,31 @@
+struct StackNode { 
+    bool is_term;
+    Symbol data;
+    struct StackNode* next; 
+}; 
+
+typedef struct treenode {
+    int rule_num;
+    Symbol symbol;
+    struct treenode* parent;
+    // struct treenode* childarray;
+    struct treenode* nextsib;
+    struct treenode* child;
+        
+} TreeNode;
+
+
+typedef struct grammarNode {
+    bool is_term;
+    // enum nonterm data_n;
+    // enum term data;
+    Symbol symbol;
+    struct grammarNode *next;
+}Grammar;
+
+typedef struct token{
+    char token[10]; //lexeme
+    char tokenname[100]; //token name
+    struct token *next; 
+    // lexeme, tokenname and 
+} Token;
