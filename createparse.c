@@ -150,8 +150,9 @@ TreeNode* createParseTree(Token* s, Grammar* G){
         pop(&stack);
         if(top->is_term == 0){
             //createNode()
-            
         }
+
+        
         else {
             if(!strcmp(tkptr->tokenname, "identifier") && top->data == var) {
                 pop(&root);
