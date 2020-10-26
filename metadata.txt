@@ -1,7 +1,9 @@
 struct StackNode { 
     bool is_term;
     Symbol data;
+    struct treenode* parenttreelink;
     struct StackNode* next; 
+    int ruleindex;
 }; 
 
 typedef struct treenode {

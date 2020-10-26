@@ -152,7 +152,7 @@ TreeNode* createParseTree(Token* s, Grammar* G){
             //createNode()
         }
 
-        
+
         else {
             if(!strcmp(tkptr->tokenname, "identifier") && top->data == var) {
                 pop(&root);
@@ -235,8 +235,16 @@ int peek(struct StackNode* root)
                         var   B
                              /  \
                             va    B
-                               / |  |  \ 
-                               a C  D    B
+                               /      
+                               a- C - D  -  B
+                                 /   /\
+                                x    y z   
+                x y z 
+                C - x
+                C - x y
+
+                D - y z
+                D- z
                 stack: var B
                 B
                 var B
