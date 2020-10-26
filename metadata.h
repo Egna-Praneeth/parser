@@ -45,12 +45,28 @@ struct StackNode {
 
 Grammar* readGrammar(void);
 Token* tokeniseSourcecode(void);
-//TreeNode* createParseTree(Token* s, Grammar* G);
-//TreeNode* createNode(Symbol symbol, int rule_num, );
+TreeNode* createParseTree(Token* s, Grammar* G);
+TreeNode* createNode(TreeNode* parent, Symbol symbol, int ruleindex);
 
 struct StackNode* newNode(bool is_term, Symbol data, int ruleindex, struct treenode* parenttreelink);
 int isEmpty(struct StackNode* root);
 void push(struct StackNode** root, bool is_term, Symbol data, int ruleindex, struct treenode* parentrreelink);
 int pop(struct StackNode** root);
 int peek(struct StackNode* root);
+int pushRule(struct StackNode* stack, Grammar* G, TreeNode* parentlink, Symbol symbol, int searchfrom);
+/*
+todo
+1. Create the char array (with indexes mapped to enum values)
+2. createNode(TreeNode* parent, Symbol symbol, int ruleindex);
+crete a node in the tree, using 
+different way to creat for S
+3. pushRule(struct StackNode* stack, Grammar* G, Symbol symbol, TreeNode* parentlink, int searchfrom)
+    a) returns the index of the rule which is being pushed into stack.
+    b) the rule to be pushed is : LHS is symbol and the searching in the grammar
+    rule starts from index searchfrom
+    c) while pushing into symbols of the rule into stack
+        mention the rule index (of grammar) in stacknode. 
+    d) put parentlink in the node too.
+4. 
 
+*/

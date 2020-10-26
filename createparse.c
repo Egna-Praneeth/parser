@@ -83,41 +83,42 @@ Token* tokeniseSourcecode(void){
     return head;
 }
 
-// TreeNode* createParseTree(Token* s, Grammar* G){
-//     struct StackNode* stack = NULL;
-//     push(&stack, 0, S, ); // push S into stack
-//     TreeNode* root = NULL;
-//     //create root of tree with S
+TreeNode* createParseTree(Token* s, Grammar* G){
+    struct StackNode* stack = NULL;
+    TreeNode* root = NULL;
+    push(&stack, 0, S, -1, root); // push S into stack
+    //create root of tree with S
+    Token* tkptr = s;
 
-//     while(!isEmpty(stack)){
-//         struct StackNode* top = peek(stack);
-//         pop(&stack);
-//         if(top->is_term == 0){
-//             //createNode()
-//         }
+    while(!isEmpty(stack)){
+        struct StackNode* top = peek(stack);
+        pop(&stack);
+        if(top->is_term == 0){
+            TreeNode* linkofnode = createNode(top-> parenttreelink, top->data, top->ruleindex);
+            int ruleindex = pushRule(stack, G, linkofnode, top->data, 0);
 
-
-//         else {
-//             if(!strcmp(tkptr->tokenname, "identifier") && top->data == var) {
-//                 pop(&root);
-//                 tkptr = tkptr ->next;
-//             }
-//             //suppose operators and separators are also keywords
-//             else if(!strcmp(tkptr->tokenname, "keyword") && it matches with the top of the stack ){ //able to compare
-//                 pop(&root);
-//                 tkptr = tkptr ->next;
+        }
+        // else {
+        //     if(!strcmp(tkptr->tokenname, "identifier") && top->data == var) {
+        //         pop(&root);
+        //         tkptr = tkptr ->next;
+        //     }
+        //     //suppose operators and separators are also keywords
+        //     else if(!strcmp(tkptr->tokenname, "keyword") && it matches with the top of the stack ){ //able to compare
+        //         pop(&root);
+        //         tkptr = tkptr ->next;
                 
-//             }
-//             else //code to handle this case
+        //     }
+        //     else //code to handle this case
 
-//             //mistake si 
-//             //operator
-//             //separator
-//             //number will be handled like identifier
-//         }
-//     }
+        //     //mistake si 
+        //     //operator
+        //     //separator
+        //     //number will be handled like identifier
+        // }
+    }
 
-// }
+}
 
 
   
