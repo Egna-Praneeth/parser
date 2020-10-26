@@ -1,0 +1,98 @@
+
+// arr[0] = 
+                    //pop stack, move tkptr ahead
+                    // S 
+                /*
+                top->data;
+                // search for top->data in grammar array.
+                // find the first occurance
+                // suppose the grammar array linkedlist is a double linkedlist
+                // push the RHS into the stack in reverse. Note the rule number as 1;
+                S: then create a node (root of the tree) : create children according to rule selected above
+                so the tree now is 
+                      S 
+                    /   \
+                program    B
+                          /  \
+                        var   B
+                             /  \
+                            va    B
+                               /      
+                               a- C - D  -  B
+                                 /   /\
+                                x    y z   
+                x y z 
+                C - x
+                C - x y
+
+                D - y z
+                D- z
+                stack: var B
+                B
+                var B
+
+                continue;
+
+                /////// token stream is also a doubly linkedlist
+                */
+
+/*
+22/10 plan:
+within main:
+
+//printf("isterm : %d, data: %d\n", grammar[0].is_term, grammar[1].next->data);
+    ////////////////tree
+    // head, grammar[3].
+    //stack
+
+
+
+    struct StackNode* root = NULL;
+    push(&root, 0, S); //give treeroot too.
+    
+    Token *tkptr;
+    tkptr = head;
+
+    Node* treeroot = NULL; //root of the tree
+    //create S
+    //treeroot-> node(has S)
+
+    while(!isEmpty(root)){
+        StackNode* top = peek(root);
+        if(top->is_term){
+            if(!strcmp(tkptr->tokenname, "identifier") && top->data == var) {
+                pop(&root);
+                tkptr = tkptr ->next;
+            }
+            //suppose operators and separators are also keywords
+            else if(!strcmp(tkptr->tokenname, "keyword") && it matches with the top of the stack ) //able to compare
+            {
+                pop(&root);
+                tkptr = tkptr ->next;
+                
+            }
+            else //code to handle this case
+
+            //mistake si 
+            //operator
+            //separator
+            //number will be handled like identifier
+        }
+        else if( tkptr && /* top is a nonterminal ){
+            //check grammar rules LHS terms
+            // if found (first occurance)
+            // for each token in the RHS of the ruls : createnodeoftree()      
+            // push in reverse the RHS of the rule      
+            // else 
+            //      do something
+            //
+            /*
+                create neew nodes. 
+                -> S 
+                  /  | 
+                 program B
+            
+        }
+        else //backtracking required
+    }
+*/
