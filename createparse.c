@@ -10,9 +10,12 @@ sample:
 " program a c b  " 
 
 */
-
+char* enumtochar[4];
 int main(){
-    
+    enumtochar[0] = "S";
+    enumtochar[1] = "B";
+    enumtochar[2] = "program";
+    enumtochar[3] = "var";
     Grammar* G = readGrammar();
     Token* tokstream = tokeniseSourcecode();
     //TreeNode* root = createParseTree(tokstream, G);
@@ -96,28 +99,30 @@ TreeNode* createParseTree(Token* s, Grammar* G){
         if(top->is_term == 0){
             TreeNode* linkofnode = createNode(top-> parenttreelink, top->data, top->ruleindex);
             int ruleindex = pushRule(stack, G, linkofnode, top->data, 0);
-
         }
-        // else {
-        //     if(!strcmp(tkptr->tokenname, "identifier") && top->data == var) {
-        //         pop(&root);
-        //         tkptr = tkptr ->next;
-        //     }
-        //     //suppose operators and separators are also keywords
-        //     else if(!strcmp(tkptr->tokenname, "keyword") && it matches with the top of the stack ){ //able to compare
-        //         pop(&root);
-        //         tkptr = tkptr ->next;
-                
-        //     }
-        //     else //code to handle this case
+         else /*top is a terminal */ {
+             if(!strcmp(tkptr->tokenname, "identifier") && top->data == var) {
+                 tkptr = tkptr->next;
+                 //createnode for terminal
+                 createNode(top->parenttreelink, top->data, top->ruleindex);
+             }//below else if commented for now as there is no number in the sample grammar
+            /* else if(!strcmp(tkptr->tokenname, "literal") && top->data == number){
+                    tkptr = tkptr->next;
+                 createNode(top->parenttreelink, top->data, top->ruleindex);
+             }*/ // only possible case left is keywords
+             else if(!strcmp(tkptr->token, enumtochar[top->data])){
+                 tkptr = tkptr->next;
+                 //createnode for terminal
+                 createNode(top->parenttreelink, top->data, top->ruleindex);
+             }
+             //below else case is when no terminal matches;
+             else {
+                 removeAndReplace();
+             }
+       
+        }
 
-        //     //mistake si 
-        //     //operator
-        //     //separator
-        //     //number will be handled like identifier
-        // }
     }
-
 }
 
 

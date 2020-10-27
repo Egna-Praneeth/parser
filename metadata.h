@@ -47,6 +47,7 @@ Grammar* readGrammar(void);
 Token* tokeniseSourcecode(void);
 TreeNode* createParseTree(Token* s, Grammar* G);
 TreeNode* createNode(TreeNode* parent, Symbol symbol, int ruleindex);
+TreeNode* deleteRule(TreeNode* parent);
 
 struct StackNode* newNode(bool is_term, Symbol data, int ruleindex, struct treenode* parenttreelink);
 int isEmpty(struct StackNode* root);
@@ -54,12 +55,15 @@ void push(struct StackNode** root, bool is_term, Symbol data, int ruleindex, str
 int pop(struct StackNode** root);
 int peek(struct StackNode* root);
 int pushRule(struct StackNode* stack, Grammar* G, TreeNode* parentlink, Symbol symbol, int searchfrom);
+int popRule(struct StackNode* stack, int ruleindex);
+
+void removeAndReplace()
 /*
 todo
-1. Create the char array (with indexes mapped to enum values)
-2. createNode(TreeNode* parent, Symbol symbol, int ruleindex);
-crete a node in the tree, using 
-different way to creat for S
+1. Create the char array (with indexes mapped to enum values) (name of array is enumtochar[])
+2. createNode(TreeNode* parent, Symbol symbol, int ruleindex);//write in tree.c
+a) crete a node in the tree
+b) different way to creat for S
 3. pushRule(struct StackNode* stack, Grammar* G, Symbol symbol, TreeNode* parentlink, int searchfrom)
     a) returns the index of the rule which is being pushed into stack.
     b) the rule to be pushed is : LHS is symbol and the searching in the grammar
@@ -67,6 +71,11 @@ different way to creat for S
     c) while pushing into symbols of the rule into stack
         mention the rule index (of grammar) in stacknode. 
     d) put parentlink in the node too.
-4. 
+4. popRule(struct StackNode* stack, int ruleindex)
+    a) search for stacknodes from top of the stack, and pop if the topnode has ruleindex 
+5. TreeNode* deleteRule(TreeNode* parent); //write in tree.c
+    a) Deletes the child linkedlistof this parent;
+6. 
+. removeAndReplace (has popRule, deleteRule, and pushnextrule)
 
 */
