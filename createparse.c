@@ -98,7 +98,8 @@ TreeNode* createParseTree(Token* s, Grammar* G){
         struct StackNode* top = peek(stack);
         pop(&stack);
         if(top->is_term == 0){
-            TreeNode* linkofnode = createNode(top-> parenttreelink, top->data, top->ruleindex);
+            //TreeNode* linkofnode = createNode(top-> parenttreelink, top->data, top->ruleindex);
+            TreeNode* linkofnode = createNode(top);
             int ruleindex = pushRule(stack, G, linkofnode, top->data, 0);
         }
          else /*top is a terminal */ {

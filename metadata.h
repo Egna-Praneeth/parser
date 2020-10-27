@@ -10,6 +10,7 @@ typedef enum symbol {S , B, program , var  } Symbol;
 
 typedef struct treenode {
     int ruleindex;
+    bool is_term;
     Symbol symbol;
     struct treenode* parent;
     // struct treenode* childarray;
@@ -52,7 +53,7 @@ struct StackNode {
 Grammar* readGrammar(void);
 Token* tokeniseSourcecode(void);
 TreeNode* createParseTree(Token* s, Grammar* G);
-TreeNode* createNode(TreeNode* parent, Symbol symbol, int ruleindex);
+TreeNode* createNode(struct StackNode* stacknode);
 TreeNode* deleteRule(TreeNode* parent, Token** tkptr);
 
 struct StackNode* newNode(bool is_term, Symbol data, int ruleindex, struct treenode* parenttreelink);
