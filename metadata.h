@@ -62,7 +62,11 @@ int pop(struct StackNode** root);
 int peek(struct StackNode* root);
 
 int pushRule(struct StackNode* stack, Grammar* G, TreeNode* parentlink, Symbol symbol, int searchfrom);
+    StackNode* pushReverseGrammarRule(Grammar* head, int ruleno, TreeNode* parent, StackNode* top)
+    TreeNode* makeTreeNodelist(Grammar* head, int ruleno, TreeNode* parent)
+
 int popRule(struct StackNode* stack, int ruleindex);
+
 int pushNextRule(struct StackNode* stack, Grammar* G, TreeNode* parentlink, int ruleindex);
 void removeAndReplace(struct StackNode* stack, TreeNode* parent, Grammar* G,  int ruleindex, Token* tkptr);
 /*
@@ -73,14 +77,14 @@ todo
 a) crete a node in the tree
 b) different way to creat for S
 
-3. pushRule(struct StackNode* stack, Grammar* G, Symbol symbol, TreeNode* parentlink, int searchfrom)
+3. (DONE) pushRule(struct StackNode* stack, Grammar* G, Symbol symbol, TreeNode* parentlink, int searchfrom)
     a) returns the index of the rule which is being pushed into stack.
     b) the rule to be pushed is : LHS is symbol and the searching in the grammar
     rule starts from index searchfrom
     c) while pushing into symbols of the rule into stack
         mention the rule index (of grammar) in stacknode. 
     d) put parentlink in the node too.
-4. popRule(struct StackNode* stack, int ruleindex)
+4. (DONE) popRule(struct StackNode* stack, int ruleindex)
     a) search for stacknodes from top of the stack, and pop if the topnode has ruleindex 
 5. TreeNode* deleteRule(TreeNode* parent); //write in tree.c
     a) Deletes the child linkedlistof this parent;
