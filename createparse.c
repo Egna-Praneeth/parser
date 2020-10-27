@@ -11,6 +11,7 @@ sample:
 
 */
 char* enumtochar[4];
+
 int main(){
     enumtochar[0] = "S";
     enumtochar[1] = "B";
