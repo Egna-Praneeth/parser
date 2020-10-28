@@ -13,27 +13,27 @@ TreeNode* addendLL(TreeNode* parent, TreeNode* newnode){
     return newnode;
 }
 
-TreeNode* createNode(struct StackNode* top){
-    if( top->data == S) {
-        top->parenttreelink = (TreeNode* ) malloc(sizeof(TreeNode));
-        top->parenttreelink->ruleindex = top->ruleindex;
-        top->parenttreelink->is_term = top->is_term;
-        top->parenttreelink->parent = NULL;
-        top->parenttreelink->child = NULL;
-        top->parenttreelink->nextsib = NULL;
-        return top->parenttreelink;
+TreeNode* createNode(){
+    if(top->data == S){
+        top->parent = (TreeNode*)malloc(sizeof(TreeNode));
+        top->parent->ruleno = top->ruleno;
+        top->parent->is_term = top->is_term;
+        top->parent->parent = NULL;
+        top->parent->child = NULL;
+        top->parent->nextsib = NULL;
+        return top->parent;
     }
     TreeNode* newnode = (TreeNode*) malloc(sizeof(TreeNode));
-    newnode->ruleindex = top->ruleindex;
+    newnode->ruleno = top->ruleno;
     newnode->is_term = top->is_term;
-    newnode->parent = top->parenttreelink;
+    newnode->parent = top->parent;
     newnode->child = NULL;
     newnode->nextsib = NULL;
-    return addtoLL(top->parenttreelink , newnode);
+    return addtoLL(top->parent , newnode);
 }
 
-void removeAndReplace(struct StackNode* stack, TreeNode* parent, Grammar* G,  int ruleindex, Token* tkptr){
-    popRule(stack, ruleindex);
+void removeAndReplace(TreeNode* parent, Grammar* G,  int ruleno, Token* tkptr){
+    popRule(ruleno);
     deleteRule(parent, &tkptr);
-    pushNextRule(stack, G, parent, ruleindex);
+    pushNextRule(stack, G, parent, ruleno);
 }
