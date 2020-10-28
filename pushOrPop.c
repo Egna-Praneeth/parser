@@ -5,10 +5,10 @@ void popRule(int ruleno){
 		pop();
 }
 
-int pushRule(Grammar* G, TreeNode* parent, Symbol symbol, int searchfrom){
+int pushRule(Grammar** G, TreeNode* parent, Symbol symbol, int searchfrom){
 
 	for(int i = searchfrom; i < GRAMMAR_SIZE; i++)
-		if(G[i].symbol == symbol){
+		if(G[i] -> symbol == symbol){
 			// parent->child = makeTreeNodelist(G[i], i, parent);
 			pushReverseGrammarRule(G[i] -> next, i, parent);
 			return i;
