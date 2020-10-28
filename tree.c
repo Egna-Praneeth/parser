@@ -13,7 +13,7 @@ TreeNode* addendLL(TreeNode* parent, TreeNode* newnode){
     return newnode;
 }
 
-TreeNode* createNode(Stack* top){
+TreeNode* createNode(struct StackNode* top){
     if(top->data == S){
         top->parent = (TreeNode*)malloc(sizeof(TreeNode));
         top->parent->ruleno = top->ruleno;
@@ -35,7 +35,7 @@ TreeNode* createNode(Stack* top){
 void removeAndReplace(TreeNode* parent, Grammar* G,  int ruleno, Token* tkptr){
     popRule(ruleno);
     deleteRule(parent, &tkptr);
-    pushNextRule(stack, G, parent, ruleno);
+    pushNextRule(parent, G, ruleno, tkptr);
 }
 
 int countTerminals(TreeNode* P){

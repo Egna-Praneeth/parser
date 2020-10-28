@@ -43,7 +43,7 @@ Stack *stack;
 Grammar* readGrammar(void);
 Token* tokeniseSourcecode(void);
 TreeNode* createParseTree(Token* s, Grammar* G);
-TreeNode* createNode();
+TreeNode* createNode(struct StackNode* top);
 TreeNode* deleteRule(TreeNode* parent, Token** tkptr);
 
 bool isEmpty();
@@ -54,7 +54,7 @@ Symbol peek();
 int pushRule(Grammar* G, TreeNode* parent, Symbol symbol, int searchfrom);
 void pushReverseGrammarRule(Grammar* head, int ruleno, TreeNode* parent);
 TreeNode* makeTreeNodelist(Grammar* head, int ruleno, TreeNode* parent);
-int popRule(int ruleno);
+void popRule(int ruleno);
 
-int pushNextRule(Grammar* G, TreeNode* parentlink, int ruleno);
+int pushNextRule(Grammar* G, TreeNode* parentlink, int ruleno, Token* tkptr);
 void removeAndReplace(TreeNode* parent, Grammar* G,  int ruleno, Token* tkptr);

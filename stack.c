@@ -33,11 +33,11 @@ Symbol peek(){
 
 //int pushRule(Grammar* G, TreeNode* parent, Symbol symbol, int searchfrom);
 //assuming that the stack stack send is
-int pushNextRule(Grammar* G, TreeNode* parentlink, int ruleno){
+int pushNextRule(Grammar* G, TreeNode* parentlink, int ruleno, Token* tkptr){
     //assuming push rule returns -1 on error.
    int i =  pushRule(G, parentlink, parentlink->symbol, ruleno + 1);
    if(i == -1){
-       removeAndReplace(parentlink->parent, G);
+       removeAndReplace(parentlink->parent, G, parentlink->ruleno, tkptr);
    }
 }
 //return 1 on success

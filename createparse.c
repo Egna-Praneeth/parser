@@ -118,7 +118,7 @@ TreeNode* createParseTree(Token* s, Grammar* G){
              }
              //below else case is when no terminal matches;
              else {
-                 removeAndReplace();
+                 removeAndReplace(top->parent, G, top->ruleno, tkptr);
              }
        
         }

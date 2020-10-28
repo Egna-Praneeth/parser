@@ -23,23 +23,23 @@ void pushReverseGrammarRule(Grammar* head, int ruleno, TreeNode* parent){
 	return;
 }
 
-TreeNode* makeTreeNodelist(Grammar* head, int ruleno, TreeNode* parent){
-	TreeNode* children, temp, prev_sib;
-	bool first = true;
-	while(head != NULL){
-		temp = (TreeNode*)malloc(sizeof(TreeNode));
-		if(first){
-			children = temp;
-			first = false;
-		}
-		temp -> ruleno = ruleno;
-		temp -> symbol = head -> symbol;
-		temp -> parent = parent;
-		temp -> nextsib = NULL;
-		temp -> child = NULL;
-		prev_sib -> nextsib = temp;
-		prev_sib = temp;
-		head = head -> next;
-	}
-	return children;
-}
+// TreeNode* makeTreeNodelist(Grammar* head, int ruleno, TreeNode* parent){
+// 	TreeNode* children, temp, prev_sib;
+// 	bool first = true;
+// 	while(head != NULL){
+// 		temp = (TreeNode*)malloc(sizeof(TreeNode));
+// 		if(first){
+// 			children = temp;
+// 			first = false;
+// 		}
+// 		temp -> ruleno = ruleno;
+// 		temp -> symbol = head -> symbol;
+// 		temp -> parent = parent;
+// 		temp -> nextsib = NULL;
+// 		temp -> child = NULL;
+// 		prev_sib -> nextsib = temp;
+// 		prev_sib = temp;
+// 		head = head -> next;
+// 	}
+// 	return children;
+// }
