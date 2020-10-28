@@ -102,6 +102,9 @@ TreeNode* createParseTree(Token* s, Grammar* G){
             int ruleindex = pushRule(G, linkofnode, top->data, 0);
         }
          else /*top is a terminal */ {
+            //  if(top->data == E){
+            //      pop();
+            //  }
              if(!strcmp(tkptr->tokenname, "identifier") && top->data == var) {
                  tkptr = tkptr->next;
                  //createnode for terminal
