@@ -106,7 +106,7 @@ TreeNode* createParseTree(Token* s, Grammar* G){
              if(!strcmp(tkptr->tokenname, "identifier") && top->data == var) {
                  tkptr = tkptr->next;
                  //createnode for terminal
-                 createNode(top->parenttreelink, top->data, top->ruleindex);
+                 createNode(top);
              }//below else if commented for now as there is no number in the sample grammar
             /* else if(!strcmp(tkptr->tokenname, "literal") && top->data == number){
                     tkptr = tkptr->next;
@@ -115,7 +115,7 @@ TreeNode* createParseTree(Token* s, Grammar* G){
              else if(!strcmp(tkptr->token, enumtochar[top->data])){
                  tkptr = tkptr->next;
                  //createnode for terminal
-                 createNode(top->parenttreelink, top->data, top->ruleindex);
+                 createNode(top);
              }
              //below else case is when no terminal matches;
              else {
