@@ -1,7 +1,7 @@
 #include "metadata.h"
 
 bool isEmpty(){ 
-    if(top == NULL)
+    if(stack == NULL)
         return true;
     return false; 
 } 
@@ -12,27 +12,27 @@ void push(bool is_term, Symbol data, int ruleno, TreeNode* parent){
     temp -> is_term = is_term; 
     temp -> ruleno = ruleno;
     temp -> parent = parent;
-    temp -> next = top;
-    top = temp;
+    temp -> next = stack;
+    stack = temp;
 } 
 
 void pop(){ 
     if(isEmpty())
         return;
-    Stack* temp = top; 
-    top = top -> next; 
+    Stack* temp = stack; 
+    stack = stack -> next; 
     free(temp); 
 } 
   
 Symbol peek(){ 
     if(isEmpty()) 
         return -1; 
-    return top -> data; 
+    return stack -> data; 
 } 
 
 
 //int pushRule(Grammar* G, TreeNode* parent, Symbol symbol, int searchfrom);
-//assuming that the stack top send is
+//assuming that the stack stack send is
 int pushNextRule(Grammar* G, TreeNode* parentlink, int ruleno){
     //assuming push rule returns -1 on error.
    int i =  pushRule(G, parentlink, parentlink->symbol, ruleno + 1);

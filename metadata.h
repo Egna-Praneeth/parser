@@ -38,7 +38,7 @@ typedef struct StackNode{
     int ruleno;
 }Stack; 
 
-Stack *top;
+Stack *stack;
 
 Grammar* readGrammar(void);
 Token* tokeniseSourcecode(void);

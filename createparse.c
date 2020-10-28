@@ -88,19 +88,18 @@ Token* tokeniseSourcecode(void){
 }
 
 TreeNode* createParseTree(Token* s, Grammar* G){
-    struct StackNode* stack = NULL;
     TreeNode* root = NULL;
-    push(&stack, 0, S, -1, root); // push S into stack
+    push(0, S, -1, root); // push S into stack
     //create root of tree with S
     Token* tkptr = s;
 
-    while(!isEmpty(stack)){
-        struct StackNode* top = peek(stack);
-        pop(&stack);
+    while(!isEmpty()){
+        Stack* top = peek();
+        pop();
         if(top->is_term == 0){
             //TreeNode* linkofnode = createNode(top-> parenttreelink, top->data, top->ruleindex);
             TreeNode* linkofnode = createNode(top);
-            int ruleindex = pushRule(stack, G, linkofnode, top->data, 0);
+            int ruleindex = pushRule(G, linkofnode, top->data, 0);
         }
          else /*top is a terminal */ {
              if(!strcmp(tkptr->tokenname, "identifier") && top->data == var) {
