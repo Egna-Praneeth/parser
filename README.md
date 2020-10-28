@@ -17,8 +17,8 @@ b) different way to creat for S
 4. (DONE) popRule(struct StackNode* stack, int ruleindex)
     a) search for stacknodes from top of the stack, and pop if the topnode has ruleindex 
 5. TreeNode* deleteRule(TreeNode* parent); //write in tree.c
-    a) Deletes the child linkedlistof this parent;
-    b) count number of terminals in the subtree rooted at parent
+    a) count number of terminals in the subtree rooted at parent
+    b) Deletes the child linkedlistof this parent;
     c) go back in the tokenstream by these many
 6. int pushNextRule(struct StackNode* stack, Grammar* G, TreeNode* parentlink, int ruleindex)
     a)based on parentlink, find the non-terminal and find next rule and push it into the stack

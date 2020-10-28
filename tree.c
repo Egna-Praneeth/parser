@@ -37,3 +37,32 @@ void removeAndReplace(TreeNode* parent, Grammar* G,  int ruleno, Token* tkptr){
     deleteRule(parent, &tkptr);
     pushNextRule(stack, G, parent, ruleno);
 }
+
+int countTerminals(TreeNode* P){
+    if(P->child == NULL)return 0;
+    int count = 0;
+    TreeNode* temp = P->child;
+    while(temp){
+        if(temp->is_term == 1) count++;
+        else count += countTerminals(temp);
+        temp = temp->nextsib;
+    }
+    return count;
+}
+void deleteLL(TreeNode* parent){
+    if(parent->child == NULL)return;
+    TreeNode* temp = parent->child, *temp2;
+
+    while(temp){
+        deleteLL(temp);
+        temp2 = temp;
+        temp = temp->nextsib;
+        free(temp2);
+    }
+}
+TreeNode* deleteRule(TreeNode* parent, Token** tkptr){
+    int num = countTerminals(parent);
+    //go back in tkptr
+    *tkptr = *tkptr - num*(sizeof(Token));
+    deleteLL(parent);
+}

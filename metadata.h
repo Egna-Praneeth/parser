@@ -8,7 +8,7 @@
 typedef enum symbol {S , B, program , var  } Symbol;
 
 typedef struct treenode{
-    int ruleindex;
+    int ruleno;
     bool is_term;
     Symbol symbol;
     struct treenode *parent;
@@ -47,13 +47,13 @@ TreeNode* createNode();
 TreeNode* deleteRule(TreeNode* parent, Token** tkptr);
 
 bool isEmpty();
-void push(bool is_term, Symbol data, int ruleno, Treenode* parent);
+void push(bool is_term, Symbol data, int ruleno, TreeNode* parent);
 void pop();
 Symbol peek();
 
 int pushRule(Grammar* G, TreeNode* parent, Symbol symbol, int searchfrom);
-    void pushReverseGrammarRule(Grammar* head, int ruleno, TreeNode* parent);
-    TreeNode* makeTreeNodelist(Grammar* head, int ruleno, TreeNode* parent);
+void pushReverseGrammarRule(Grammar* head, int ruleno, TreeNode* parent);
+TreeNode* makeTreeNodelist(Grammar* head, int ruleno, TreeNode* parent);
 int popRule(int ruleno);
 
 int pushNextRule(Grammar* G, TreeNode* parentlink, int ruleno);

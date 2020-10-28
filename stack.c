@@ -6,7 +6,7 @@ bool isEmpty(){
     return false; 
 } 
   
-void push(bool is_term, Symbol data, int ruleno, Treenode* parent){ 
+void push(bool is_term, Symbol data, int ruleno, TreeNode* parent){ 
     Stack* temp = (Stack*)malloc(sizeof(Stack)); 
     temp -> data = data;
     temp -> is_term = is_term; 
@@ -29,3 +29,15 @@ Symbol peek(){
         return -1; 
     return top -> data; 
 } 
+
+
+//int pushRule(Grammar* G, TreeNode* parent, Symbol symbol, int searchfrom);
+//assuming that the stack top send is
+int pushNextRule(Grammar* G, TreeNode* parentlink, int ruleno){
+    //assuming push rule returns -1 on error.
+   int i =  pushRule(G, parentlink, parentlink->symbol, ruleno + 1);
+   if(i == -1){
+       removeAndReplace(parentlink->parent, G);
+   }
+}
+//return 1 on success
