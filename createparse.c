@@ -12,6 +12,17 @@ sample:
 */
 char* enumtochar[4];
 
+void printParseTree(TreeNode* root){
+    if(root == NULL) return ;
+    printf("%s\n", enumtochar[root->symbol]);
+    if(root->child == NULL) return ;
+    TreeNode* head = root->child;
+    while(head){
+        printParseTree(head);
+        head = head->nextsib;
+    }
+
+}
 int main(){
     enumtochar[0] = "S";
     enumtochar[1] = "B";
@@ -19,11 +30,13 @@ int main(){
     enumtochar[3] = "var";
     Grammar* G = readGrammar();
     Token* tokstream = tokeniseSourcecode();
-    //TreeNode* root = createParseTree(tokstream, G);
+    TreeNode* root = createParseTree(tokstream, G);
+    printParseTree(root);
 }
 
 
 Grammar* readGrammar(void){
+    printf("IN readGrammar function\n");
     //Grammar grammar [3];
     Grammar* grammar = (Grammar*) malloc(sizeof(Grammar)*3);
     //S-> program B
@@ -66,6 +79,7 @@ Grammar* readGrammar(void){
 }
 
 Token* tokeniseSourcecode(void){
+    printf("IN tokeniseSourcecode function\n");
     Token* head;
     head = (Token *) malloc(sizeof(Token)); 
     strcpy(head->token, "program");
@@ -84,28 +98,40 @@ Token* tokeniseSourcecode(void){
     strcpy(head->next->next->next->tokenname, "identifier");
     head->next->next->next->next = NULL;
     head->next->next->next->prev = head->next->next;
+    Token* t = head->next->next->next;
+    t->next = (Token *) malloc(sizeof(Token));
+    t->next->prev = t;
+    strcpy(t->next->token,"$");
     return head;
 }
 
 TreeNode* createParseTree(Token* s, Grammar* G){
+    printf("IN createParseTree function\n");
     TreeNode* root = NULL;
+    root = (TreeNode*)malloc(sizeof(TreeNode));
+        root->ruleno = -1 ;
+        root->is_term = 0;
+        root->symbol = S;
+        root->parent = NULL;
+        root->child = NULL;
+        root->nextsib = NULL;
     push(0, S, -1, root); // push S into stack
     //create root of tree with S
     Token* tkptr = s;
-
+    Stack *top;
     while(!isEmpty()){
-        Stack* top = peek();
+        //printf("inside stack\n");
+        top = peek();
         pop();
         if(top->is_term == 0){
-            //TreeNode* linkofnode = createNode(top-> parenttreelink, top->data, top->ruleindex);
             TreeNode* linkofnode = createNode(top);
             int ruleindex = pushRule(G, linkofnode, top->data, 0);
         }
-         else /*top is a terminal */ {
+        else /*top is a terminal */{
             //  if(top->data == E){
             //      pop();
             //  }
-             if(!strcmp(tkptr->tokenname, "identifier") && top->data == var) {
+            if(!strcmp(tkptr->tokenname, "identifier") && top->data == var) {
                  tkptr = tkptr->next;
                  //createnode for terminal
                  createNode(top);
@@ -121,12 +147,14 @@ TreeNode* createParseTree(Token* s, Grammar* G){
              }
              //below else case is when no terminal matches;
              else {
-                 removeAndReplace(top->parent, G, top->ruleno, tkptr);
+                 removeAndReplace(top->parent, G, top->ruleno, &tkptr);
              }
        
         }
 
     }
+    //printf("root is: %p", root);
+    return root;
 }
 
 

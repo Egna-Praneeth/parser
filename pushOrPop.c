@@ -1,7 +1,7 @@
 #include "metadata.h"
 
 void popRule(int ruleno){
-	while(stack->ruleno == ruleno)
+	while(stack && stack->ruleno == ruleno)
 		pop();
 }
 

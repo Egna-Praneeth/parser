@@ -24,16 +24,19 @@ void pop(){
     free(temp); 
 } 
   
-Symbol peek(){ 
+Stack* peek(){ 
     if(isEmpty()) 
-        return -1; 
-    return stack -> data; 
+        return NULL ;
+    Stack* node = (Stack*) malloc(sizeof(Stack));
+    *node = *stack;
+    node->next = NULL;
+    return node; 
 } 
 
 
 //int pushRule(Grammar* G, TreeNode* parent, Symbol symbol, int searchfrom);
 //assuming that the stack stack send is
-int pushNextRule(Grammar* G, TreeNode* parentlink, int ruleno, Token* tkptr){
+int pushNextRule(Grammar* G, TreeNode* parentlink, int ruleno, Token** tkptr){
     //assuming push rule returns -1 on error.
    int i =  pushRule(G, parentlink, parentlink->symbol, ruleno + 1);
    if(i == -1){
