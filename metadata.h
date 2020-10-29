@@ -7,9 +7,9 @@
 
 #define GRAMMAR_SIZE 55
 // NOTE: WHEN MAKING CHANGES HERE, CHECK WHETHER THIS FUNCTION EXISTS ELSE WHERE. AND MAKE CORRESPONGING CHANGES
-typedef enum symbol {andExpression, arithExpression, assignList, assignment, bool_arith, boolExpression,
+typedef enum symbol { andExpression,arithExpression, assignList, assignment, bool_arith, boolExpression,
 bracket_pair, const_int_list, dims_jagged, decl_jagged_arr, decl_multi, decl_norm, decl_num, dims_rect,
-decl_rect_arr, decl_type, declaration, declList, factor, list_of_rows, mulExpression, mutable, other_dims,
+decl_rect_arr, decl_type, declaration, declList, factor, list_of_rows, mulExpression, mulop, mutable, other_dims,
 row, Start, sumop, type, var_id, var_id_list, varList, bool_and, bool_or, equal, plus, minus, multiply, divide,
 par_op, par_cl, curl_op, curl_cl, sq_op, sq_cl, colon, semi_colon, array_dots, array, declare, E, integer,
 boolean, real, jagged, list, number, of, program, R1, size, values, var, variables
@@ -38,6 +38,7 @@ static char* enumtochar[] = {"andExpression",
 "factor",
 "list_of_rows",
 "mulExpression",
+"mulop",
 "mutable",
 "other_dims",
 "row",

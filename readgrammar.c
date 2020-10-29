@@ -4,7 +4,7 @@ Grammar* addtoken(Grammar* head, char* str, bool isTerm){
     Grammar* new = (Grammar*) malloc(sizeof(Grammar));
     // new->data = (char* ) malloc(sizeof(str));
     // strcpy(new->data, str);
-    for (int i = 0; i < 62; i++)
+    for (int i = 0; i < 63; i++)
     {
         if(strcmp(str,enumtochar[i])) continue;
         new->symbol = i;

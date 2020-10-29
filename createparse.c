@@ -41,42 +41,72 @@ TreeNode* createParseTree(Token* s, Grammar** G){
     //create root of tree with S
     Token* tkptr = s;
     Stack *top;
+    int i=0;
     while(!isEmpty()){
-        printf("Tokenstream status: %s", tkptr->token);
+        printf("noob\n");
+
+        printf("Tokenstream status: %u", tkptr);
         
         //printf("inside stack\n");
         top = peek();
         pop();
-        printf("\tStack top symbol: %s\n", enumtochar[top->data]);
+        Stack* st_temp = top;
+        i=0;
+        // while(st_temp)
+        // {   i++;
+        //     printf("%d %s ",i,enumtochar[st_temp->data]);
+        //     st_temp = st_temp->next;
+        // }
+        // printf("\n");
+        printf("\tStack top symbol: %s %d\n", enumtochar[top->data], top->ruleno); //E
         if(top->is_term == 0){
             TreeNode* linkofnode = createNode(top, enumtochar[top->data]);
             int ruleindex = pushRule(G, linkofnode, top->data, 0);
+        printf("noob1\n");
         }
         else /*top is a terminal */{
              if(top->data == E){
+        printf("noob2\n");
                  ;
              }
             else if(tkptr->tokenname == identifier  && top->data == var) {
                  //createnode for terminal
                  createNode(top, tkptr->token);
                  tkptr = tkptr->next;
+        printf("noob3\n");
              }//below else if commented for now as there is no number in the sample grammar
              else if(tkptr->tokenname == digits && top->data == number){
                     tkptr = tkptr->next;
                     createNode(top, tkptr->token);
+        printf("noob3\n");
              } // only possible case left is keywords
              else if(!strcmp(tkptr->token, enumtochar[top->data])){
                  tkptr = tkptr->next;
                  //createnode for terminal
                  createNode(top, tkptr->token);
              }
+            else if (tkptr->tokenname == operator && !strcmp(tkptr->token,enumtochar[top->data]))
+            {
+                tkptr = tkptr->next;
+                printf("noob4\n");
+                 //createnode for terminal
+                 createNode(top, tkptr->token);
+            }
+            
+             
              //below else case is when no terminal matches;
              else {
+                //  printf("%d\n",top->data);
                  removeAndReplace(top->parent, G, top->ruleno, &tkptr);
+                //  printf("%d\n",top->data);
+        printf("noob5\n");
              }
+        printf("noob6\n");
        
         }
+        printf("noob7\n");
         free(top);
+        printf("noob8\n");
     }
     //printf("root is: %p", root);
     return root;

@@ -11,6 +11,14 @@ int pushRule(Grammar** G, TreeNode* parent, Symbol symbol, int searchfrom){
 		if(G[i] -> symbol == symbol){
 			// parent->child = makeTreeNodelist(G[i], i, parent);
 			pushReverseGrammarRule(G[i] -> next, i, parent);
+		        Stack* st_temp = stack;
+			// 	while(st_temp)
+			// {   
+			// 	// i++;
+			// 	printf("%s ",enumtochar[st_temp->data]);
+			// 	st_temp = st_temp->next;
+			// }
+			// printf("\n");
 			return i;
 		}
 	return -1;

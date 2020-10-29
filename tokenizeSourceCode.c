@@ -95,9 +95,9 @@ Token* add_token(Token* head, char* str, int line){
     new->next = NULL;
     new->line_num = line;
     int flag=0;
-    for (int i = 0; i < 62; i++)
+    for (int i = 0; i < 63; i++)
     {
-        if(flag==0&&i==61&&strcmp(new->token,enumtochar[i]))
+        if(flag==0&&i==62&&strcmp(new->token,enumtochar[i]))
         {
             if(isdigit(new->token[0]))
             {
@@ -108,9 +108,9 @@ Token* add_token(Token* head, char* str, int line){
         }
         if(strcmp(new->token,enumtochar[i])) continue;
         flag=1;
-        if(i>29&&i<37) new->tokenname = 0;
+        if(i>30&&i<38) new->tokenname = 0;
         
-        else if(i>36) new->tokenname = 1;
+        else if(i>37) new->tokenname = 1;
 
         else new->tokenname = 2;   
         break; 

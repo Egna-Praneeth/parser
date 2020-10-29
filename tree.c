@@ -1,6 +1,7 @@
 #include "metadata.h"
 
 TreeNode* addendLL(TreeNode* parent, TreeNode* newnode){
+    // printf("lol1\n");
     if(parent->child == NULL) {
         parent->child = newnode;
         return newnode;
@@ -9,22 +10,37 @@ TreeNode* addendLL(TreeNode* parent, TreeNode* newnode){
     while(temp->nextsib){
         temp = temp->nextsib;
     }
+    // printf("lol2\n");
     temp->nextsib = newnode;
+    // printf("lol3\n");
     return newnode;
 }
 
 TreeNode* createNode(struct StackNode* node, char* symbolname){
+        // printf("bruh\n");
+
     if(node->data == Start){
         return node->parent;
+        // printf("bruh1\n");
     }
+    // printf("bruh2\n");
     TreeNode* newnode = (TreeNode*) malloc(sizeof(TreeNode));
+    // printf("bruh4\n");
     newnode->symbol = node->data;
+    // printf("bruh5\n");
+    newnode->symbolname = (char*)malloc(sizeof(symbolname));
     strcpy(newnode->symbolname, symbolname);
+    // printf("bruh6\n");
     newnode->ruleno = node->ruleno;
+    // printf("bruh7\n");
     newnode->is_term = node->is_term;
+    // printf("bruh8\n");
     newnode->parent = node->parent;
+    // printf("bruh9\n");
     newnode->child = NULL;
+    // printf("bruh0\n");
     newnode->nextsib = NULL;
+    // printf("bruh3\n");
     return addendLL(node->parent , newnode);
 }
 
