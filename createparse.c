@@ -32,6 +32,7 @@ TreeNode* createParseTree(Token* s, Grammar** G){
     root = (TreeNode*)malloc(sizeof(TreeNode));
         root->ruleno = -1 ;
         root->is_term = 0;
+        strcpy(root->symbolname, enumtochar[Start]);
         root->symbol = Start;
         root->parent = NULL;
         root->child = NULL;
@@ -41,31 +42,33 @@ TreeNode* createParseTree(Token* s, Grammar** G){
     Token* tkptr = s;
     Stack *top;
     while(!isEmpty()){
-        printf("Stack Entrance status: %s", tkptr->token);
+        printf("Tokenstream status: %s", tkptr->token);
+        
         //printf("inside stack\n");
         top = peek();
         pop();
+        printf("\tStack top symbol: %s\n", enumtochar[top->data]);
         if(top->is_term == 0){
-            TreeNode* linkofnode = createNode(top);
+            TreeNode* linkofnode = createNode(top, enumtochar[top->data]);
             int ruleindex = pushRule(G, linkofnode, top->data, 0);
         }
         else /*top is a terminal */{
              if(top->data == E){
-                 pop();
+                 ;
              }
-            if(tkptr->tokenname == identifier  && top->data == var) {
-                 tkptr = tkptr->next;
+            else if(tkptr->tokenname == identifier  && top->data == var) {
                  //createnode for terminal
-                 createNode(top);
+                 createNode(top, tkptr->token);
+                 tkptr = tkptr->next;
              }//below else if commented for now as there is no number in the sample grammar
              else if(tkptr->tokenname == digits && top->data == number){
                     tkptr = tkptr->next;
-                 createNode(top);
+                    createNode(top, tkptr->token);
              } // only possible case left is keywords
              else if(!strcmp(tkptr->token, enumtochar[top->data])){
                  tkptr = tkptr->next;
                  //createnode for terminal
-                 createNode(top);
+                 createNode(top, tkptr->token);
              }
              //below else case is when no terminal matches;
              else {

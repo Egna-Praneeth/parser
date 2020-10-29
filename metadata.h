@@ -83,6 +83,7 @@ static char* enumtochar[] = {"andExpression",
 
 typedef struct treenode{
     int ruleno;
+    char* symbolname;
     bool is_term;
     Symbol symbol;
     struct treenode *parent;
@@ -127,7 +128,7 @@ void  readGrammar(char* filename, Grammar* G[]);
 Token* tokeniseSourcecode(char* file, Token* s);
 void printTokenStream(Token* s);
 TreeNode* createParseTree(Token* s, Grammar** G);
-TreeNode* createNode(struct StackNode* top);
+TreeNode* createNode(struct StackNode* top, char* symbolname);
 TreeNode* deleteRule(TreeNode* parent, Token** tkptr);
 
 bool isEmpty();

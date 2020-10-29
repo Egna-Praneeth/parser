@@ -13,13 +13,13 @@ TreeNode* addendLL(TreeNode* parent, TreeNode* newnode){
     return newnode;
 }
 
-TreeNode* createNode(struct StackNode* node){
+TreeNode* createNode(struct StackNode* node, char* symbolname){
     if(node->data == Start){
-        
         return node->parent;
     }
     TreeNode* newnode = (TreeNode*) malloc(sizeof(TreeNode));
     newnode->symbol = node->data;
+    strcpy(newnode->symbolname, symbolname);
     newnode->ruleno = node->ruleno;
     newnode->is_term = node->is_term;
     newnode->parent = node->parent;

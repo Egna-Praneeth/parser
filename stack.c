@@ -44,3 +44,5 @@ int pushNextRule(Grammar** G, TreeNode* parentlink, int ruleno, Token** tkptr){
    }
 }
 //return 1 on success
+
+
