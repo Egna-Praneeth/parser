@@ -25,9 +25,9 @@ dims_rect -> '[' var_id '..' var_id ']' dims_rect
 dims_rect -> E
 var_id -> 'var'
 var_id -> 'number'
-type -> 'INTEGER'
-type -> 'BOOLEAN'
-type -> 'REAL'
+type -> 'integer'
+type -> 'boolean'
+type -> 'real'
 varList -> 'var' varList
 varList -> E
 assignList -> assignment assignList
