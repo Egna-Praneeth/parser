@@ -32,7 +32,7 @@ varList -> 'var' varList
 varList -> 'E'
 assignList -> assignment assignList
 assignList -> 'E'
-assignment -> mutable '=' bool_arith ';'
+assignment -> 'var' mutable '=' bool_arith ';'
 bool_arith -> factor andExpression boolExpression
 bool_arith -> arithExpression
 boolExpression -> '|||' factor andExpression boolExpression
@@ -49,7 +49,7 @@ mulop -> '*'
 mulop -> '/'
 factor -> 'number'
 factor -> 'var' mutable
-mutable -> '[' var_id var_id_list ']'
+mutable ->  '[' var_id var_id_list ']'
 mutable -> 'E'
 var_id_list -> var_id var_id_list
 var_id_list -> 'E'
