@@ -14,7 +14,7 @@ TreeNode* addendLL(TreeNode* parent, TreeNode* newnode){
 }
 
 TreeNode* createNode(struct StackNode* node){
-    if(node->data == S){
+    if(node->data == Start){
         
         return node->parent;
     }
