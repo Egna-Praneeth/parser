@@ -52,7 +52,7 @@ void pop();
 Stack* peek();
 
 int pushRule(Grammar** G, TreeNode* parent, Symbol symbol, int searchfrom);
-void pushReverseGrammarRule(Grammar** head, int ruleno, TreeNode* parent);
+void pushReverseGrammarRule(Grammar* head, int ruleno, TreeNode* parent);
 TreeNode* makeTreeNodelist(Grammar** head, int ruleno, TreeNode* parent);
 void popRule(int ruleno);
 

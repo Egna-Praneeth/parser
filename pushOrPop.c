@@ -16,7 +16,7 @@ int pushRule(Grammar** G, TreeNode* parent, Symbol symbol, int searchfrom){
 	return -1;
 }
 
-void pushReverseGrammarRule(Grammar** head, int ruleno, TreeNode* parent){
+void pushReverseGrammarRule(Grammar* head, int ruleno, TreeNode* parent){
 	if(head->next!=NULL)
 		pushReverseGrammarRule(head -> next, ruleno, parent);
 	push(head -> is_term, head -> symbol, ruleno, parent);
