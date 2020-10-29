@@ -28,14 +28,14 @@ int main(){
     enumtochar[1] = "B";
     enumtochar[2] = "program";
     enumtochar[3] = "var";
-    Grammar* G = readGrammar();
+    Grammar** G = readGrammar();
     Token* tokstream = tokeniseSourcecode();
     TreeNode* root = createParseTree(tokstream, G);
     printParseTree(root);
 }
 
 
-Grammar* readGrammar(void){
+Grammar** readGrammar(void){
     printf("IN readGrammar function\n");
     //Grammar grammar [3];
     Grammar* grammar = (Grammar*) malloc(sizeof(Grammar)*3);
@@ -105,7 +105,7 @@ Token* tokeniseSourcecode(void){
     return head;
 }
 
-TreeNode* createParseTree(Token* s, Grammar* G){
+TreeNode* createParseTree(Token* s, Grammar** G){
     printf("IN createParseTree function\n");
     TreeNode* root = NULL;
     root = (TreeNode*)malloc(sizeof(TreeNode));

@@ -5,18 +5,18 @@ void popRule(int ruleno){
 		pop();
 }
 
-int pushRule(Grammar* G, TreeNode* parent, Symbol symbol, int searchfrom){
+int pushRule(Grammar** G, TreeNode* parent, Symbol symbol, int searchfrom){
 
 	for(int i = searchfrom; i < GRAMMAR_SIZE; i++)
-		if(G[i].symbol == symbol){
+		if(G[i] -> symbol == symbol){
 			// parent->child = makeTreeNodelist(G[i], i, parent);
-			pushReverseGrammarRule(G[i].next, i, parent);
+			pushReverseGrammarRule(G[i] -> next, i, parent);
 			return i;
 		}
 	return -1;
 }
 
-void pushReverseGrammarRule(Grammar* head, int ruleno, TreeNode* parent){
+void pushReverseGrammarRule(Grammar** head, int ruleno, TreeNode* parent){
 	if(head->next!=NULL)
 		pushReverseGrammarRule(head -> next, ruleno, parent);
 	push(head -> is_term, head -> symbol, ruleno, parent);

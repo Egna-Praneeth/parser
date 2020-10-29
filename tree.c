@@ -28,7 +28,7 @@ TreeNode* createNode(struct StackNode* node){
     return addendLL(node->parent , newnode);
 }
 
-void removeAndReplace(TreeNode* parent, Grammar* G,  int ruleno, Token** tkptr){
+void removeAndReplace(TreeNode* parent, Grammar** G,  int ruleno, Token** tkptr){
     popRule(ruleno);
     deleteRule(parent, tkptr);
     pushNextRule(G, parent, ruleno, tkptr);

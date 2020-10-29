@@ -40,9 +40,9 @@ typedef struct StackNode{
 
 Stack *stack;
 
-Grammar* readGrammar(void);
+Grammar** readGrammar(void);
 Token* tokeniseSourcecode(void);
-TreeNode* createParseTree(Token* s, Grammar* G);
+TreeNode* createParseTree(Token* s, Grammar** G);
 TreeNode* createNode(struct StackNode* top);
 TreeNode* deleteRule(TreeNode* parent, Token** tkptr);
 
@@ -51,10 +51,10 @@ void push(bool is_term, Symbol data, int ruleno, TreeNode* parent);
 void pop();
 Stack* peek();
 
-int pushRule(Grammar* G, TreeNode* parent, Symbol symbol, int searchfrom);
-void pushReverseGrammarRule(Grammar* head, int ruleno, TreeNode* parent);
-TreeNode* makeTreeNodelist(Grammar* head, int ruleno, TreeNode* parent);
+int pushRule(Grammar** G, TreeNode* parent, Symbol symbol, int searchfrom);
+void pushReverseGrammarRule(Grammar** head, int ruleno, TreeNode* parent);
+TreeNode* makeTreeNodelist(Grammar** head, int ruleno, TreeNode* parent);
 void popRule(int ruleno);
 
-int pushNextRule(Grammar* G, TreeNode* parentlink, int ruleno, Token** tkptr);
-void removeAndReplace(TreeNode* parent, Grammar* G,  int ruleno, Token** tkptr);
+int pushNextRule(Grammar** G, TreeNode* parentlink, int ruleno, Token** tkptr);
+void removeAndReplace(TreeNode* parent, Grammar** G,  int ruleno, Token** tkptr);
