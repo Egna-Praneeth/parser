@@ -13,29 +13,25 @@ TreeNode* addendLL(TreeNode* parent, TreeNode* newnode){
     return newnode;
 }
 
-TreeNode* createNode(struct StackNode* top){
-    if(top->data == S){
-        top->parent = (TreeNode*)malloc(sizeof(TreeNode));
-        top->parent->ruleno = top->ruleno;
-        top->parent->is_term = top->is_term;
-        top->parent->parent = NULL;
-        top->parent->child = NULL;
-        top->parent->nextsib = NULL;
-        return top->parent;
+TreeNode* createNode(struct StackNode* node){
+    if(node->data == S){
+        
+        return node->parent;
     }
     TreeNode* newnode = (TreeNode*) malloc(sizeof(TreeNode));
-    newnode->ruleno = top->ruleno;
-    newnode->is_term = top->is_term;
-    newnode->parent = top->parent;
+    newnode->symbol = node->data;
+    newnode->ruleno = node->ruleno;
+    newnode->is_term = node->is_term;
+    newnode->parent = node->parent;
     newnode->child = NULL;
     newnode->nextsib = NULL;
-    return addendLL(top->parent , newnode);
+    return addendLL(node->parent , newnode);
 }
 
-void removeAndReplace(TreeNode* parent, Grammar* G,  int ruleno, Token* tkptr){
+void removeAndReplace(TreeNode* parent, Grammar* G,  int ruleno, Token** tkptr){
     popRule(ruleno);
-    deleteRule(parent, &tkptr);
-    pushNextRule(parent, G, ruleno, tkptr);
+    deleteRule(parent, tkptr);
+    pushNextRule(G, parent, ruleno, tkptr);
 }
 
 int countTerminals(TreeNode* P){
@@ -59,10 +55,16 @@ void deleteLL(TreeNode* parent){
         temp = temp->nextsib;
         free(temp2);
     }
+    parent->child = NULL;
 }
 TreeNode* deleteRule(TreeNode* parent, Token** tkptr){
     int num = countTerminals(parent);
     //go back in tkptr
-    *tkptr = *tkptr - num*(sizeof(Token));
+        while(num){
+        *tkptr = (*tkptr)->prev;
+        num--;
+        }
+
+
     deleteLL(parent);
 }
