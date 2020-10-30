@@ -4,7 +4,6 @@
 #include <stdbool.h>
 #include <limits.h>
 #include <ctype.h>
-
 #define GRAMMAR_SIZE 55
 // NOTE: WHEN MAKING CHANGES HERE, CHECK WHETHER THIS FUNCTION EXISTS ELSE WHERE. AND MAKE CORRESPONGING CHANGES
 typedef enum symbol { andExpression,arithExpression, assignList, assignment, bool_arith, boolExpression,

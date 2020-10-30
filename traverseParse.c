@@ -1,3 +1,7 @@
+#include <stdio.h>
+#include "metadata.h"
+#include "typeExpr.h"
+#include "string.h"
 /*
 for declaration in program
 	//computing typeexpr
@@ -15,7 +19,7 @@ for declaration in program
 */
 TreeNode* ptrNext(TreeNode* ptr ,int count){
 	while(count--){
-		ptr = ptr->next;
+		ptr = ptr->nextsib;
 
 	}
 	return ptr;
@@ -34,7 +38,7 @@ TypeExprNode* traverseDeclParse(TreeNode* top){
 
 	TreeNode* temp = top;
 	temp = ptrNext(temp->child,4); //to get to declaration
-	TypeExprNode* temp_table,table,prev_tableNode;
+	TypeExprNode* temp_table,*table,*prev_tableNode;
  	bool initialised = false;
 	while(temp -> symbol == declaration){
 		table = (TypeExprNode*)malloc(sizeof(TypeExprNode));
@@ -66,12 +70,12 @@ TypeExprNode* traverseDeclParse(TreeNode* top){
 						table -> TE.arr.dimensions++;
 						double_dot_finder = ptrNext(double_dot_finder, 3) -> child;
 					}
-					double_dot_finder = double_dot_finder -> next;
+					double_dot_finder = double_dot_finder -> nextsib;
 				}
 
 				//finding the range
-				RangeRect* curr_RangeRect, prev_RangeRect;
-				TreeNode* var_id_finder = temp -> child -> next;
+				RangeRect* curr_RangeRect, *prev_RangeRect;
+				TreeNode* var_id_finder = temp -> child -> nextsib;
 				 // to get to first '['
 				initialised = false;
 				for (int i = 0; i < table -> TE.arr.dimensions; ++i){
@@ -84,18 +88,18 @@ TypeExprNode* traverseDeclParse(TreeNode* top){
 						prev_RangeRect -> next = curr_RangeRect;					
 					}
 				
-					if(var_id_finder -> next -> child -> symbol == number){
-						curr_RangeRect -> lower.limit = var_id_finder -> next -> child -> DIGITS;
+					if(var_id_finder -> nextsib -> child -> symbol == number){
+						curr_RangeRect -> lower.limit = atoi(var_id_finder -> nextsib -> child -> symbolname);
 					}
 					else{
-						curr_RangeRect -> lower.var = var_id_finder -> next -> child -> VARIABLE;
+						curr_RangeRect -> lower.var = var_id_finder -> nextsib -> child -> symbolname;
 						table -> tag2 = Dynamic;
 					}
 					if(ptrNext(var_id_finder,3)-> child -> symbol == number){
-						curr_RangeRect -> upper.limit = ptrNext(var_id_finder,3) -> child -> DIGITS;
+						curr_RangeRect -> upper.limit = atoi(ptrNext(var_id_finder,3) -> child -> symbolname);
 					}
 					else{
-						curr_RangeRect -> upper.var = ptrNext(var_id_finder,3) -> child -> VARIABLE;
+						curr_RangeRect -> upper.var = ptrNext(var_id_finder,3) -> child -> symbolname;
 						table -> tag2 = Dynamic;
 					}
 					prev_RangeRect = curr_RangeRect;
@@ -115,10 +119,10 @@ TypeExprNode* traverseDeclParse(TreeNode* top){
 				int r1_low,r1_high;
 				table -> TE.arr.rng.jagged[0] = (RangeJagged*)malloc(sizeof(RangeJagged));
 				RangeJagged *curr_range = table -> TE.arr.rng.jagged[0];
-				int r1_low = curr_range -> data = temp1 -> next -> DIGITS;
+				r1_low = curr_range -> data = atoi(temp1 -> nextsib -> symbolname);
 				curr_range -> next = (RangeJagged*)malloc(sizeof(RangeJagged));
 				curr_range -> head = NULL;
-				int r1_high = curr_range -> next -> data = ptrNext(temp1,3) -> DIGITS;
+				r1_high = curr_range -> next -> data = atoi(ptrNext(temp1,3) -> symbolname);
 				curr_range -> next -> next = NULL;
 				curr_range -> next -> head = NULL;
 
@@ -139,23 +143,23 @@ TypeExprNode* traverseDeclParse(TreeNode* top){
 					else{
 						curr_range -> next = prev_RangeJagged; 
 					}
-					TreeNode* saved_finder = r_finder -> child -> next; // saving pointer to next list_of_rows;
+					TreeNode* saved_finder = r_finder -> child -> nextsib; // saving pointer to nextsib list_of_rows;
 					r_finder = r_finder -> child -> child; // get to R1 of the row
 					r_finder = ptrNext(r_finder,6); // get to 'number' in row
-					curr_range -> data = r_finder -> DIGITS;
+					curr_range -> data = atoi(r_finder -> symbolname);
 
 					if(table -> TE.arr.dimensions == 3){
 						r_finder = ptrNext(r_finder,4); //get to const_int_list
 						TreeNode *temp_finder = r_finder;
-						RangeJagged3D * curr_range_3D,prev_3D;
+						RangeJagged3D * curr_range_3D,*prev_3D;
 						initialised = false;
 						for(int j = 0; j < curr_range -> data; j++){
 							int count = 0;
 							while(temp_finder->child->symbol == number){ 
 								count++;	//count the no. of 'number's occuring 
-								temp_finder = ptrNext(temp_finder->child,1);	// get to next 'number'
+								temp_finder = ptrNext(temp_finder->child,1);	// get to nextsib 'number'
 							}
-							temp_finder = r_finder -> next -> child ->next; // get to the next const_int list
+							temp_finder = r_finder -> nextsib -> child ->nextsib; // get to the nextsib const_int list
 							curr_range_3D = (RangeJagged3D*)malloc(sizeof(RangeJagged3D));
 							if(!initialised){
 								curr_range -> head = curr_range_3D;
@@ -183,27 +187,27 @@ TypeExprNode* traverseDeclParse(TreeNode* top){
 	
 
 		temp = temp -> parent -> parent; // to get back to declaration
-		TreeNode* left_temp = temp -> child -> next; // get to decl_num
+		TreeNode* left_temp = temp -> child -> nextsib; // get to decl_num
 		if(left_temp -> child -> symbol == decl_multi){
 			left_temp = ptrNext(left_temp -> child -> child, 3); // to get to the first var 
-			table -> name = left_temp -> child -> VARIABLE;
-			left_temp = left_temp -> next; //get to varList
+			table -> name = left_temp -> child -> symbolname;
+			left_temp = left_temp -> nextsib; //get to varList
 			while(left_temp -> child -> symbol != E){
 				TypeExprNode* copy = generateCopy(table);
-				copy -> name = left_temp -> child -> VARIABLE;
+				copy -> name = left_temp -> child -> symbolname;
 				table -> next = copy;
 				table = copy;
-				left_temp = left_temp -> child -> next;
+				left_temp = left_temp -> child -> nextsib;
 			}
 		}	
 		else{
-			table -> name = left_temp -> child -> VARIABLE;
+			table -> name = left_temp -> child -> symbolname;
 		}
 		prev_tableNode = table;
 		table -> next = NULL;
 		table = table-> next;
 
-		temp = temp -> next -> child; // get to declList
+		temp = temp -> nextsib -> child; // get to declList
 
 	}
 
@@ -214,12 +218,12 @@ TypeExprNode* traverseDeclParse(TreeNode* top){
 
 TypeExprNode* lookup(TreeNode* identifier, TypeExprNode* table){
 	while(table){
-		if(strcmp(identifier -> symbolname, table -> symbolname) == 0){
+		if(strcmp(identifier -> symbolname, table -> name) == 0){
 			return table;
 		}
 		table = table -> next;
 	}
-	return NULL:
+	return NULL;
 }
 
 

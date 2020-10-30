@@ -1,4 +1,5 @@
 #include "metadata.h"
+#include "typeExpr.h"
 
 
 void printParseTree(TreeNode* root){
@@ -18,11 +19,14 @@ int main(){
     Grammar *G[60];
     Token *s;
     readGrammar("grammar.txt", G);
+    TypeExprNode* table;
     //printGrammar(G);
     s = tokeniseSourcecode("input.txt",s);
     
     // printTokenStream(s);
     TreeNode* root = createParseTree(s, G);
+    printf("completed creation\n");
+    table = traverseDeclParse(root);
     // printParseTree(root);
 }
 
@@ -46,23 +50,23 @@ TreeNode* createParseTree(Token* s, Grammar** G){
         // printf("noob\n");
         Stack* st_temp = stack;
         i=0;
-        printf("\n");
-        while(st_temp)
-        {   i++;
-            printf("%d %s ",i,enumtochar[st_temp->data]);
-            st_temp = st_temp->next;
-        }
+        // printf("\n");
+        // while(st_temp)
+        // {   i++;
+        //     printf("%d %s ",i,enumtochar[st_temp->data]);
+        //     st_temp = st_temp->next;
+        // }
         // printf("Tokenstream status: %u", tkptr);
         
-        printf("\n");
-        printf("Tokenstream status: %s %d", tkptr->token ,tkptr->line_num );
+        // printf("\n");
+        // printf("Tokenstream status: %s %d", tkptr->token ,tkptr->line_num );
         
         //printf("inside stack\n");
         top = peek();
         pop();
         
         
-        printf("\tStack top symbol: %s %d\n", enumtochar[top->data], top->ruleno); //E
+        // printf("\tStack top symbol: %s %d\n", enumtochar[top->data], top->ruleno); //E
         
         if(top->is_term == 0){
             TreeNode* linkofnode = createNode(top, enumtochar[top->data]);

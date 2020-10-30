@@ -13,30 +13,30 @@
 
 Token* add_token(Token* head, char* str, int line);
 void printll(Token* head);
-void deleteblankspaces(char *s)
-{
-	int  i,k=0;
+// void deleteblankspaces(char *s)
+// {
+// 	int  i,k=0;
  
-	 for(i=0;s[i];i++)
-    {
-     	s[i]=s[i+k];
+// 	 for(i=0;s[i];i++)
+//     {
+//      	s[i]=s[i+k];
  
      	
-     	if(s[i]==' '|| s[i]==9 || s[i] == '\n')
-     	{
-		  k++;
-		  i--;
-	    }
+//      	if(s[i]==' '|| s[i]==9 || s[i] == '\n')
+//      	{
+// 		  k++;
+// 		  i--;
+// 	    }
      	
-    }
-}
+//     }
+// }
 
 Token* tokeniseSourcecode(char* file, Token* head)
 {
     int line = 1;
     head = NULL;
     char str[100];
-    char delim[] = " \n";
+    char delim[] = " \n\t";
 
     // scanf("%[^'z']",str);
     FILE *f;
@@ -91,9 +91,9 @@ Token* add_token(Token* head, char* str, int line){
     Token* new = (Token*) malloc(sizeof(Token));
     new->token = (char* ) malloc(sizeof(str));
     strcpy(new->token, str);
-    deleteblankspaces(new->token);
-    if(new->token == " ")
-        return head;
+    // deleteblankspaces(new->token);
+    // if(new->token == " " || new->token == "\t")
+        // return head;
     new->next = NULL;
     new->line_num = line;
     int flag=0;
