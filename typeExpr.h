@@ -53,12 +53,12 @@ enum prim_or_arr{
 	rect_array,
 	jagged_array
 };
-char* prim_or_arr_str[] = { 
+static char* prim_or_arr_str[] = { 
 	"primitive",
 	"rect_array",
 	"jagged_array"
 };
-char* stat_or_dyn_str[] = { 
+static char* stat_or_dyn_str[] = { 
 	"Static",
 	"Dynamic",
 	"NA"
@@ -77,3 +77,4 @@ typedef struct typeExprNode{
 	TypeExpression TE;
 	struct typeExprNode *next;
 }TypeExprNode;
+TypeExprNode* traverseDeclParse(TreeNode* top);

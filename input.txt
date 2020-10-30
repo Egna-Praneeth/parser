@@ -1,5 +1,6 @@
 program ( )
 {
+<<<<<<< HEAD
 	declare list of variables new d w e2 : integer ;
 	declare v1 : integer ;
  	declare list of variables a1 a2 : integer ;
@@ -14,4 +15,17 @@ program ( )
 	b1 = c1 &&& d ;
 	c1 = a1 * a2 ;
 	m1 = m2 + a1 ;
+=======
+	declare list of variables abcd ghd2_1 ssd_2_3 : array [ 2 .. 5 ] of integer ;
+>>>>>>> e9c97a77243cb3f6e6d9517801abacab6d326c83
 }
+
+
+
+
+
+
+
+
+
+
