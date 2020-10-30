@@ -2,12 +2,13 @@
 
 
 void printParseTree(TreeNode* root){
-    
+    //preorder traversal P L R
     if(root == NULL) return ;
     printf("%s\n", enumtochar[root->symbol]);
     if(root->child == NULL) return ;
     TreeNode* head = root->child;
     while(head){
+        //printf("|--");
         printParseTree(head);
         head = head->nextsib;
     }
@@ -23,7 +24,7 @@ int main(){
     
     // printTokenStream(s);
     TreeNode* root = createParseTree(s, G);
-    // printParseTree(root);
+     printParseTree(root);
 }
 
 TreeNode* createParseTree(Token* s, Grammar** G){
