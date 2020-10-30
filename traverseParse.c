@@ -30,7 +30,7 @@ TypeExprNode* generateCopy(TypeExprNode* original){
 	return duplicate;
 }
 
-TypeExprNode* traverseParse(TreeNode* top){
+TypeExprNode* traverseDeclParse(TreeNode* top){
 
 	TreeNode* temp = top;
 	temp = ptrNext(temp->child,4); //to get to declaration
@@ -202,9 +202,37 @@ TypeExprNode* traverseParse(TreeNode* top){
 		prev_tableNode = table;
 		table -> next = NULL;
 		table = table-> next;
+
+		temp = temp -> next -> child; // get to declList
+
 	}
+
+
 
 	return temp_table;
 }
 
+TypeExprNode* lookup(TreeNode* identifier, TypeExprNode* table){
+	while(table){
+		if(strcmp(identifier -> symbolname, table -> symbolname) == 0){
+			return table;
+		}
+		table = table -> next;
+	}
+	return NULL:
+}
 
+
+void traverseAssignParse(TreeNode* top, TypeExprNode *table){
+	TreeNode* temp;
+	temp = ptrNext(top->child, 6); // get to first assignment
+	
+	while(temp -> symbol == assignment){
+		TreeNode* LHS = temp -> child;
+		TypeExprNode* lhs = lookup(LHS, table)
+		if(lhs == NULL){
+			// error identifier not declared
+		}
+		
+	}
+}
