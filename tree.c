@@ -32,7 +32,7 @@ TreeNode* addendLL(TreeNode* parent, TreeNode* newnode){
     return newnode;
 }
 
-TreeNode* createNode(struct StackNode* node, char* symbolname){
+TreeNode* createNode(struct StackNode* node, char* symbolname, int line_no){
         // printf("bruh\n");
 
     if(node->data == Start){
@@ -57,6 +57,7 @@ TreeNode* createNode(struct StackNode* node, char* symbolname){
     // printf("bruh0\n");
     newnode->nextsib = NULL;
     // printf("bruh3\n");
+    newnode->lineno = line_no;
     return addendLL(node->parent , newnode);
 }
 

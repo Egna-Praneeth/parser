@@ -14,6 +14,7 @@ Kartikaya Sharma
 2018A7PS0386P
 
 */
+#include "typeExpr.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -146,7 +147,7 @@ void  readGrammar(char* filename, Grammar* G[]);
 Token* tokeniseSourcecode(char* file, Token* s);
 void printTokenStream(Token* s);
 TreeNode* createParseTree(Token* s, Grammar** G);
-TreeNode* createNode(struct StackNode* top, char* symbolname);
+TreeNode* createNode(struct StackNode* top, char* symbolname, int line_no);
 TreeNode* deleteRule(TreeNode* parent, Token** tkptr);
 
 bool isEmpty();
@@ -161,3 +162,6 @@ void popRule(int ruleno);
 
 int pushNextRule(Grammar** G, TreeNode* parentlink, int ruleno, Token** tkptr);
 void removeAndReplace(TreeNode* parent, Grammar** G,  int ruleno, Token** tkptr);
+TypeExprNode* traverseDeclParse(TreeNode* top);
+void printTypeExpressionTable(TypeExprNode* T);
+void printParseTree(TreeNode* root);

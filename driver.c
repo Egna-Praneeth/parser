@@ -1,5 +1,5 @@
 #include "metadata.h"
-#include "typeExpr.h"
+// #include "typeExpr.h"
 
 int main()
 {
@@ -36,8 +36,9 @@ int main()
             printf("\nCompleted traversal.\n\tEnter next Option: ");
             break;
         case 3:
+            count_tree = 0;
             root = createParseTree(s, G);
-            // printParseTree(root);
+            printParseTree(root);
             printf("\nParse Tree printed.\n\tEnter next Option: ");
             break;
 

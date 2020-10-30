@@ -92,5 +92,4 @@ typedef struct typeExprNode{
 	TypeExpression TE;
 	struct typeExprNode *next;
 }TypeExprNode;
-TypeExprNode* traverseDeclParse(TreeNode* top);
-void printTypeExpressionTable(TypeExprNode* T);
+int count_tree;

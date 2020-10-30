@@ -16,15 +16,19 @@ Kartikaya Sharma
 */
 
 #include "metadata.h"
-#include "typeExpr.h"
-
+// #include "typeExpr.h"
 
 void printParseTree(TreeNode* root){
     //preorder traversal P L R
     if(root == NULL) return ;
-    printf("<%s, \t", root->symbolname, root->is_term, root->symbolname, root->ruleno, root-> ;
+    if(!count_tree)
+    {
+        printf("<symbol name, is_term, nam/ type, line, grammar rule no, depth of node>\n");
+    }
+    printf("<%s, is_term = %d, %s, %d, %d>\t", enumtochar[root->symbol], root->is_term, root->symbolname, root->lineno, count_tree) ;
     if(root->child == NULL) return ;
     TreeNode* head = root->child;
+    count_tree++;
     printf("\n");
     while(head){
         //printf("|--");
@@ -90,39 +94,39 @@ TreeNode* createParseTree(Token* s, Grammar** G){
         // printf("\tStack top symbol: %s %d\n", enumtochar[top->data], top->ruleno); //E
         
         if(top->is_term == 0){
-            TreeNode* linkofnode = createNode(top, enumtochar[top->data]);
+            TreeNode* linkofnode = createNode(top, enumtochar[top->data],tkptr->line_num);
             int ruleindex = pushRule(G, linkofnode, top->data, 0);
         // printf("noob1\n");
         }
         else /*top is a terminal */{
              if(top->data == E){
         // printf("noob2\n");
-                TreeNode* linkofnode = createNode(top,enumtochar[E]);
+                TreeNode* linkofnode = createNode(top,enumtochar[E],tkptr->line_num);
                 
                 // int i =  pushRule(G, linkofnode, , top->ruleno + 1);
  
              }
             else if(tkptr->tokenname == identifier  && top->data == var) {
                  //createnode for terminal
-                 createNode(top, tkptr->token);
+                 createNode(top, tkptr->token,tkptr->line_num);
                  tkptr = tkptr->next;
         // printf("noob3\n");
              }//below else if commented for now as there is no number in the sample grammar
              else if(tkptr->tokenname == digits && top->data == number){
-                    createNode(top, tkptr->token);
+                    createNode(top, tkptr->token,tkptr->line_num);
                     tkptr = tkptr->next;
         // printf("noob3\n");
              } // only possible case left is keywords
              else if(!strcmp(tkptr->token, enumtochar[top->data])){
                  //createnode for terminal
-                createNode(top, tkptr->token);
+                createNode(top, tkptr->token,tkptr->line_num);
                 tkptr = tkptr->next;
              }
             else if (tkptr->tokenname == operator && !strcmp(tkptr->token,enumtochar[top->data]))
             {
                 // printf("noob4\n");
                  //createnode for terminal
-                createNode(top, tkptr->token);
+                createNode(top, tkptr->token,tkptr->line_num);
                 tkptr = tkptr->next;
             }
             

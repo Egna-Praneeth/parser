@@ -17,7 +17,7 @@ Kartikaya Sharma
 
 #include <stdio.h>
 #include "metadata.h"
-#include "typeExpr.h"
+// #include "typeExpr.h"
 void printTypeExpressionTable(TypeExprNode* T)
 {
     // FILE* f = fopen("output.txt","w");
