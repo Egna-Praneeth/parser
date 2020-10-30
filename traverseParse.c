@@ -66,11 +66,18 @@ TypeExprNode* traverseDeclParse(TreeNode* top){
 				TreeNode* double_dot_finder = temp;
 				double_dot_finder = ptrNext(temp -> child,3); 
 				while(double_dot_finder -> symbol != E){
+				// printf("%u\t%d\t%u\t%u\t%d\t%s\t%s\n",temp->child, temp->is_term, temp->nextsib, temp->parent,
+				// temp->child->nextsib->nextsib->nextsib->ruleno,enumtochar[temp->child->nextsib->nextsib->nextsib->symbol],temp->child->nextsib->nextsib->nextsib->symbolname);
+					// printf("noob1\n");
 					if(double_dot_finder -> symbol == array_dots){
 						table -> TE.arr.dimensions++;
 						double_dot_finder = ptrNext(double_dot_finder, 3) -> child;
+					// printf("noob2\n");
 					}
-					double_dot_finder = double_dot_finder -> nextsib;
+					// printf("noob3\n");
+					if(double_dot_finder->symbol != E)
+						double_dot_finder = ptrNext(double_dot_finder,2);
+					// printf("noob4\n");
 				}
 
 				//finding the range
@@ -234,11 +241,13 @@ TypeExprNode* lookup(TreeNode* identifier, TypeExprNode* table){
 // 	while(temp -> symbol == assignment){
 // 		TreeNode* LHS = temp -> child;
 // 		TypeExprNode* lhs = lookup(LHS, table)
-// 		if(lhs == NULL){
+// 		if(LHS == NULL){
 // 			// error identifier not declared
+// 			;
 // 		}
 // 		if(lhs -> tag1 == primitive){
 			 
 // 		}
 // 	}
 // }
+

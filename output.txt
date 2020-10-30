@@ -1,63 +1,36 @@
-"andExpression",
-"arithExpression",
-"assignList",
-"assignment",
-"bool_arith",
-"boolExpression",
-"bracket_pair",
-"const_int_list",
-"dims_jagged",
-"decl_jagged_arr",
-"decl_multi",
-"decl_norm",
-"decl_num",
-"dims_rect",
-"decl_rect_arr",
-"decl_type",
-"declaration",
-"declList",
-"factor",
-"list_of_rows",
-"mulExpression",
-"mulop",
-"mutable",
-"other_dims",
-"row",
-"Start",
-"sumop",
-"type",
-"var_id",
-"var_id_list",
-"varList",
-"&&&",
-"|||",
-"=",
-"+",
-"−",
-"*",
-"/",
-"(",
-")",
-"{",
-"}",
-"[",
-"]",
-":",
-";",
-"..",
-"array",
-"declare",
-"E",
-"integer",
-"boolean",
-"real",
-"jagged",
-"list",
-"number",
-"of",
-"program",
-"R1",
-"size",
-"values",
-"var",
-"variables"
+<abcd> <rect_array> <Static>  <type = rect_array, dimensions = 1, range_R1 = (2, 5), basicElemntType = andExpression>
+<ghd2_1> <rect_array> <Static>  <type = rect_array, dimensions = 1, range_R1 = (2, 5), basicElemntType = andExpression>
+<ssd_2_3> <rect_array> <Static>  <type = rect_array, dimensions = 1, range_R1 = (2, 5), basicElemntType = andExpression>
+<new> <primitive> <NA>  <type = andExpression>
+<d> <primitive> <NA>  <type = andExpression>
+<w> <primitive> <NA>  <type = andExpression>
+<e2> <primitive> <NA>  <type = andExpression>
+<v1> <primitive> <NA>  <type = andExpression>
+<a1> <primitive> <NA>  <type = andExpression>
+<a2> <primitive> <NA>  <type = andExpression>
+<b1> <primitive> <NA>  <type = arithExpression>
+<b2> <primitive> <NA>  <type = arithExpression>
+<b3> <primitive> <NA>  <type = arithExpression>
+<c1> <primitive> <NA>  <type = assignList>
+<c2> <primitive> <NA>  <type = assignList>
+<u> <rect_array> <Static>  <type = rect_array, dimensions = 2, range_R1 = (2, 5), range_R2 = (3, 6), basicElemntType = andExpression>
+<v> <rect_array> <Static>  <type = rect_array, dimensions = 2, range_R1 = (2, 5), range_R2 = (3, 6), basicElemntType = andExpression>
+<s1> <jagged_array> <NA>  <type = jagged_array, dimensions = 3, range_R1 = (4, 7), range_R2 = (3), basicElemntType = andExpression>
+<s2> <jagged_array> <NA>  <type = jagged_array, dimensions = 3, range_R1 = (4, 7), range_R2 = (3), basicElemntType = andExpression>
+<s3> <jagged_array> <NA>  <type = jagged_array, dimensions = 3, range_R1 = (4, 7), range_R2 = (3), basicElemntType = andExpression>
+<m1> <primitive> <NA>  <type = assignList>
+<m2> <primitive> <NA>  <type = assignList>
+<m3> <primitive> <NA>  <type = assignList>
+<h1> <rect_array> <Static>  <type = rect_array, dimensions = 3, range_R1 = (12, 34), range_R2 = (11, 20), range_R3 = (18, 33), basicElemntType = andExpression>
+<h2> <rect_array> <Static>  <type = rect_array, dimensions = 3, range_R1 = (12, 34), range_R2 = (11, 20), range_R3 = (18, 33), basicElemntType = andExpression>
+<h3> <rect_array> <Static>  <type = rect_array, dimensions = 3, range_R1 = (12, 34), range_R2 = (11, 20), range_R3 = (18, 33), basicElemntType = andExpression>
+<s4> <jagged_array> <NA>  <type = jagged_array, dimensions = 2, range_R1 = (3, 8), range_R2 = (3), basicElemntType = andExpression>
+<s5> <jagged_array> <NA>  <type = jagged_array, dimensions = 2, range_R1 = (3, 8), range_R2 = (3), basicElemntType = andExpression>
+<s6> <jagged_array> <NA>  <type = jagged_array, dimensions = 2, range_R1 = (3, 8), range_R2 = (3), basicElemntType = andExpression>
+<p1> <jagged_array> <NA>  <type = jagged_array, dimensions = 2, range_R1 = (105, 107), range_R2 = (4), basicElemntType = andExpression>
+<p2> <jagged_array> <NA>  <type = jagged_array, dimensions = 2, range_R1 = (105, 107), range_R2 = (4), basicElemntType = andExpression>
+<p3> <jagged_array> <NA>  <type = jagged_array, dimensions = 2, range_R1 = (105, 107), range_R2 = (4), basicElemntType = andExpression>
+<q1> <jagged_array> <NA>  <type = jagged_array, dimensions = 3, range_R1 = (4, 7), range_R2 = (3), basicElemntType = andExpression>
+<q2> <jagged_array> <NA>  <type = jagged_array, dimensions = 3, range_R1 = (4, 7), range_R2 = (3), basicElemntType = andExpression>
+<q3> <jagged_array> <NA>  <type = jagged_array, dimensions = 3, range_R1 = (4, 7), range_R2 = (3), basicElemntType = andExpression>
+The End

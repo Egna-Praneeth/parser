@@ -2,7 +2,13 @@ enum type{
 	Integer,
 	Bool,
 	Real
-};typedef union bound{
+};
+static char* type_to_char[] = { 
+	"Integer",
+	"Bool",
+	"Real"
+};
+typedef union bound{
 	int limit;
 	char* var;
 }Bound;
@@ -78,3 +84,4 @@ typedef struct typeExprNode{
 	struct typeExprNode *next;
 }TypeExprNode;
 TypeExprNode* traverseDeclParse(TreeNode* top);
+void printTypeExpressionTable(TypeExprNode* T);
