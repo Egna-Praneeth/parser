@@ -239,29 +239,72 @@ TypeExprNode* traverseDeclParse(TreeNode* top){
 	return temp_table;
 }
 
-TypeExprNode* lookup(TreeNode* identifier, TypeExprNode* table){
+TypeExprNode lookup(TreeNode* identifier, TypeExprNode* table){
+
+// handle numbers lookup;
+
 	while(table){
 		if(strcmp(identifier -> symbolname, table -> name) == 0){
-			return table;
+			return *table;
 		}
 		table = table -> next;
 	}
 	return NULL;
 }
 
+int findRealChildren(TreeNode* root){
+	if(root -> child == NULL)
+		return 0;
+	int count =0;
+	TreeNode* tc= root->child;
+	while (tc){
+		if(tc->is_term == false)
+			count++;
+		tc= tc->nextsib;
+	}
+	return count;
+}
+
+TypeExprNode* morethanone(TreeNode* X, TypeExprNode* table){
+	TreeNode* tc = X->child;
+	TypeExprNode* typet;
+
+	while(tc){
+		tc =tc->nextsib;
+		
+
+	}
+}
+
+
+TypeExprNode checkType(TreeNode* X, TypeExprNode* lhs, TypeExprNode* table){
+	int real_children = findRealChildren(X);
+	if(real_children == 0)
+		return lookup(X,table);
+	if(real_children == 1)
+		return checkType(X -> child, lhs, table);
+	if(real_children > 1){
+		return morethanone(X,table);
+	}
+}
 
 // void traverseAssignParse(TreeNode* top, TypeExprNode *table){
 // 	TreeNode* temp;
 // 	temp = ptrNext(top->child, 6); // get to first assignment
 	
-// 	while(temp -> symbol == assignment){
-// 		TreeNode* LHS = temp -> child;
-// 		TypeExprNode* lhs = lookup(LHS, table)
-// 		if(lhs == NULL){
-// 			// error identifier not declared
-// 		}
-// 		if(lhs -> tag1 == primitive){
-			  
-// 		}
-// 	}
-// }
+	while(temp -> symbol == assignment){
+		TreeNode* temp2 = temp;
+		TypeExprNode *rhs,*lhs;
+		lhs = lookup(temp2->child, table);
+
+		if(lhs == NULL){
+			// error identifier not declared
+		}
+		temp2 = temp2 -> child;
+		while(temp2->nextsib){
+			temp2 = ptrNext(temp2,1);
+		}//get to bool_arith
+		rhs=checkType(temp2,lhs);
+		
+	}
+}
