@@ -26,15 +26,12 @@ int main(){
     s = tokeniseSourcecode("input.txt",s);
     // printTokenStream(s);
     TreeNode* root = createParseTree(s, G);
-<<<<<<< HEAD
      printParseTree(root);
-=======
     printParseTree(root);
     printf("completed creation\n");
 
     table = traverseDeclParse(root);
     // printParseTree(root);
->>>>>>> e9c97a77243cb3f6e6d9517801abacab6d326c83
 }
 
 TreeNode* createParseTree(Token* s, Grammar** G){
