@@ -190,7 +190,7 @@ TypeExprNode* traverseDeclParse(TreeNode* top){
 		TreeNode* left_temp = temp -> child -> nextsib; // get to decl_num
 		if(left_temp -> child -> symbol == decl_multi){
 			left_temp = ptrNext(left_temp -> child -> child, 3); // to get to the first var 
-			table -> name = left_temp -> child -> symbolname;
+			table -> name = left_temp -> symbolname;
 			left_temp = left_temp -> nextsib; //get to varList
 			while(left_temp -> child -> symbol != E){
 				TypeExprNode* copy = generateCopy(table);

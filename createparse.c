@@ -5,13 +5,14 @@
 void printParseTree(TreeNode* root){
     
     if(root == NULL) return ;
-    printf("%s\n", enumtochar[root->symbol]);
+    printf("%s\t", enumtochar[root->symbol]);
     if(root->child == NULL) return ;
     TreeNode* head = root->child;
     while(head){
         printParseTree(head);
         head = head->nextsib;
     }
+    printf("\n");
 
 }
 
@@ -22,10 +23,11 @@ int main(){
     TypeExprNode* table;
     //printGrammar(G);
     s = tokeniseSourcecode("input.txt",s);
-    
     // printTokenStream(s);
     TreeNode* root = createParseTree(s, G);
+    printParseTree(root);
     printf("completed creation\n");
+
     table = traverseDeclParse(root);
     // printParseTree(root);
 }
