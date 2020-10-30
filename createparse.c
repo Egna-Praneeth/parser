@@ -1,3 +1,20 @@
+/*
+Group no.: 11
+Group member names and IDs:
+Aditya V. Bodade
+2018A7PS0256P
+
+Egna Praneeth Gummana
+2018A7PS0284P
+
+Yogya Modi
+2018A7PS0235P
+
+Kartikaya Sharma
+2018A7PS0386P
+
+*/
+
 #include "metadata.h"
 #include "typeExpr.h"
 
@@ -26,15 +43,12 @@ int main(){
     s = tokeniseSourcecode("input.txt",s);
     // printTokenStream(s);
     TreeNode* root = createParseTree(s, G);
-<<<<<<< HEAD
      printParseTree(root);
-=======
     printParseTree(root);
     printf("completed creation\n");
 
     table = traverseDeclParse(root);
     // printParseTree(root);
->>>>>>> e9c97a77243cb3f6e6d9517801abacab6d326c83
 }
 
 TreeNode* createParseTree(Token* s, Grammar** G){
