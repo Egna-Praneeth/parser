@@ -99,7 +99,7 @@ static char* enumtochar[] = {"andExpression",
 };
 
 typedef struct treenode{
-    int ruleno;
+    int ruleno,lineno;
     char* symbolname;
     bool is_term;
     Symbol symbol;
