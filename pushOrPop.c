@@ -1,3 +1,19 @@
+/*
+Group no.: 11
+Group member names and IDs:
+Aditya V. Bodade
+2018A7PS0256P
+
+Egna Praneeth Gummana
+2018A7PS0284P
+
+Yogya Modi
+2018A7PS0235P
+
+Kartikaya Sharma
+2018A7PS0386P
+
+*/
 #include "metadata.h"
 
 void popRule(int ruleno){

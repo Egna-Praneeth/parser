@@ -1,3 +1,20 @@
+/*
+Group no.: 11
+Group member names and IDs:
+Aditya V. Bodade
+2018A7PS0256P
+
+Egna Praneeth Gummana
+2018A7PS0284P
+
+Yogya Modi
+2018A7PS0235P
+
+Kartikaya Sharma
+2018A7PS0386P
+
+*/
+
 enum type{
 	Integer,
 	Bool,
@@ -34,20 +51,12 @@ typedef struct array{
 	enum type t;
 	int dimensions;
  	RangeType rng;
-
 }Array;
-
-
 
 typedef struct range_jagged3D{
 	int data;
 	struct range_jagged3D *next;
 }RangeJagged3D;
-
-
-
-
-
 
 typedef union typeExpression{
 	Array arr;

@@ -1,15 +1,33 @@
+/*
+Group no.: 11
+Group member names and IDs:
+Aditya V. Bodade
+2018A7PS0256P
+
+Egna Praneeth Gummana
+2018A7PS0284P
+
+Yogya Modi
+2018A7PS0235P
+
+Kartikaya Sharma
+2018A7PS0386P
+
+*/
+
 #include "metadata.h"
 #include "typeExpr.h"
 
 
 void printParseTree(TreeNode* root){
-    
+    //preorder traversal P L R
     if(root == NULL) return ;
     printf("<%s, \t", root->symbolname, root->is_term, root->symbolname, root->ruleno, root-> ;
     if(root->child == NULL) return ;
     TreeNode* head = root->child;
     printf("\n");
     while(head){
+        //printf("|--");
         printParseTree(head);
         head = head->nextsib;
     }

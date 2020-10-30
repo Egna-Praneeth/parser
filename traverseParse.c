@@ -1,3 +1,19 @@
+/*
+Group no.: 11
+Group member names and IDs:
+Aditya V. Bodade
+2018A7PS0256P
+
+Egna Praneeth Gummana
+2018A7PS0284P
+
+Yogya Modi
+2018A7PS0235P
+
+Kartikaya Sharma
+2018A7PS0386P
+
+*/
 #include <stdio.h>
 #include "metadata.h"
 #include "typeExpr.h"
@@ -234,20 +250,18 @@ TypeExprNode* lookup(TreeNode* identifier, TypeExprNode* table){
 }
 
 
-// void traverseAssignParse(TreeNode* top, TypeExprNode *table){
-// 	TreeNode* temp;
-// 	temp = ptrNext(top->child, 6); // get to first assignment
+void traverseAssignParse(TreeNode* top, TypeExprNode *table){
+	TreeNode* temp;
+	temp = ptrNext(top->child, 6); // get to first assignment
 	
-// 	while(temp -> symbol == assignment){
-// 		TreeNode* LHS = temp -> child;
-// 		TypeExprNode* lhs = lookup(LHS, table)
-// 		if(LHS == NULL){
-// 			// error identifier not declared
-// 			;
-// 		}
-// 		if(lhs -> tag1 == primitive){
-			 
-// 		}
-// 	}
-// }
-
+	while(temp -> symbol == assignment){
+		TreeNode* LHS = temp -> child;
+		TypeExprNode* lhs = lookup(LHS, table)
+		if(lhs == NULL){
+			// error identifier not declared
+		}
+		if(lhs -> tag1 == primitive){
+			  
+		}
+	}
+}

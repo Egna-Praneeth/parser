@@ -1,3 +1,20 @@
+/*
+Group no.: 11
+Group member names and IDs:
+Aditya V. Bodade
+2018A7PS0256P
+
+Egna Praneeth Gummana
+2018A7PS0284P
+
+Yogya Modi
+2018A7PS0235P
+
+Kartikaya Sharma
+2018A7PS0386P
+
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -82,13 +99,14 @@ static char* enumtochar[] = {"andExpression",
 };
 
 typedef struct treenode{
-    int ruleno;
+    int ruleno,lineno;
     char* symbolname;
     bool is_term;
     Symbol symbol;
     struct treenode *parent;
     struct treenode *nextsib;
     struct treenode *child;
+    TypeExprNode TE_data;
 }TreeNode;
 
 typedef struct grammarNode{
