@@ -227,18 +227,18 @@ TypeExprNode* lookup(TreeNode* identifier, TypeExprNode* table){
 }
 
 
-// void traverseAssignParse(TreeNode* top, TypeExprNode *table){
-// 	TreeNode* temp;
-// 	temp = ptrNext(top->child, 6); // get to first assignment
+void traverseAssignParse(TreeNode* top, TypeExprNode *table){
+	TreeNode* temp;
+	temp = ptrNext(top->child, 6); // get to first assignment
 	
-// 	while(temp -> symbol == assignment){
-// 		TreeNode* LHS = temp -> child;
-// 		TypeExprNode* lhs = lookup(LHS, table)
-// 		if(lhs == NULL){
-// 			// error identifier not declared
-// 		}
-// 		if(lhs -> tag1 == primitive){
-			 
-// 		}
-// 	}
-// }
+	while(temp -> symbol == assignment){
+		TreeNode* LHS = temp -> child;
+		TypeExprNode* lhs = lookup(LHS, table)
+		if(lhs == NULL){
+			// error identifier not declared
+		}
+		if(lhs -> tag1 == primitive){
+			  
+		}
+	}
+}
