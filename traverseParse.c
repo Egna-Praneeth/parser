@@ -268,21 +268,43 @@ int findRealChildren(TreeNode* root){
 TypeExprNode* morethanone(TreeNode* X, TypeExprNode* table){
 	TreeNode* tc = X->child;
 	TypeExprNode* typet;
-
+	bool is_arith = false;
+	bool divide_exists = false;
+	enum type temp_type,prev_type;
 	while(tc){
-		tc =tc->nextsib;
-		
-
+		if(!strcmp(tc->name,"mulop")||!strcmp(tc->name,"sumop"))
+			is_arith = true;
+		if(!!strcmp(tc->child->name,"/"))
+			divide_exists = true;
+		tc = tc->nextsib;
 	}
+	tc = X->child;
+	bool initialised = false;
+
+	while(tc)
+	{
+		temp_type = tag1? TE.arr.t:TE.primitive;
+		if(initialised){
+			if(prev_type != temp_type){
+				X -> TE_data.TE.primitive = Mismatch;
+				return 
+			}
+		}
+	}	
+
+
 }
 
 
-TypeExprNode checkType(TreeNode* X, TypeExprNode* lhs, TypeExprNode* table){
+void checkType(TreeNode* X, TypeExprNode* lhs, TypeExprNode* table){
 	int real_children = findRealChildren(X);
 	if(real_children == 0)
-		return lookup(X,table);
+		// lookup(X,table)
+		return ;
 	if(real_children == 1)
-		return checkType(X -> child, lhs, table);
+		checkType(X -> child, lhs, table);
+		X->TE_data = lookup(X->child,table);
+		return ;
 	if(real_children > 1){
 		return morethanone(X,table);
 	}

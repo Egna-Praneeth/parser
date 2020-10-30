@@ -18,7 +18,8 @@ Kartikaya Sharma
 enum type{
 	Integer,
 	Bool,
-	Real
+	Real,
+	Mismatch
 };
 static char* type_to_char[] = { 
 	"Integer",
