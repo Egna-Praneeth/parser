@@ -18,8 +18,11 @@ Kartikaya Sharma
 enum type{
 	Integer,
 	Bool,
-	Real
-};typedef union bound{
+	Real,
+	Mismatch
+};
+
+typedef union bound{
 	int limit;
 	char* var;
 }Bound;
@@ -45,20 +48,12 @@ typedef struct array{
 	enum type t;
 	int dimensions;
  	RangeType rng;
-
 }Array;
-
-
 
 typedef struct range_jagged3D{
 	int data;
 	struct range_jagged3D *next;
 }RangeJagged3D;
-
-
-
-
-
 
 typedef union typeExpression{
 	Array arr;
