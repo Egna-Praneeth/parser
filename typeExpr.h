@@ -18,10 +18,13 @@ Kartikaya Sharma
 enum type{
 	Integer,
 	Bool,
-	Real,
-	Mismatch
+	Real
 };
-
+static char* type_to_char[] = { 
+	"Integer",
+	"Bool",
+	"Real"
+};
 typedef union bound{
 	int limit;
 	char* var;
@@ -90,3 +93,4 @@ typedef struct typeExprNode{
 	struct typeExprNode *next;
 }TypeExprNode;
 TypeExprNode* traverseDeclParse(TreeNode* top);
+void printTypeExpressionTable(TypeExprNode* T);

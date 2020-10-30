@@ -18,44 +18,47 @@ Kartikaya Sharma
 #include <stdio.h>
 #include "metadata.h"
 #include "typeExpr.h"
-int main()
+void printTypeExpressionTable(TypeExprNode* T)
 {
-    TypeExprNode* ptr;
-    
+    // FILE* f = fopen("output.txt","w");
+    TypeExprNode* ptr = T;
+    printf("\n<Field1>  <Field2>  <Field3>  <Field3>\n\n");
     while (ptr)
     {
         Array a;
-        printf("<%s> <%s> <%s> ", ptr->name, prim_or_arr_str[ptr->tag1],stat_or_dyn_str[ptr->tag2]);
+        RangeRect* r;
+        RangeJagged* rj;
+        printf("<%s>  <%s>  <%s>  ", ptr->name, prim_or_arr_str[ptr->tag1],stat_or_dyn_str[ptr->tag2]);
         switch (ptr->tag1)
         {
         case 0:
-            printf(" <type = %s>", enumtochar[ptr->TE.primitive]);
+            printf(" <type = %s>", type_to_char[ptr->TE.primitive]);
             break;
         case 1:
             a = ptr->TE.arr;
-            printf(" <type = %s, dimensions = %d", prim_or_arr_str[ptr->tag1], a.dimensions);
+            printf(" <type = %s, dimensions = %d, ", prim_or_arr_str[ptr->tag1], a.dimensions);
+            r = a.rng.rect;
             for (int i = 0; i < a.dimensions; i++)
             {
-                RangeRect* r = a.rng.rect;
                 printf("range_R%d = (%d, %d), ", i+1, r->lower.limit, r->upper.limit);
                 r = r->next;
             }
-            printf("basicElemntType = %s>", enumtochar[a.t]);
+            printf("basicElemntType = %s>", type_to_char[a.t]);
             break;
         case 2:
             a = ptr->TE.arr;
             printf(" <type = %s, dimensions = %d, range_R1 = (%d, %d), ", 
             prim_or_arr_str[ptr->tag1], a.dimensions, a.rng.jagged[0]->data, a.rng.jagged[0]->next->data);
             
-            RangeJagged* r = a.rng.jagged[1];
-            printf("range_R2 = ( ");
-            while (r->next)
+            rj = a.rng.jagged[1];
+            printf("range_R2 = (");
+            while (rj->next)
             {
-                printf("%d", r->data);
+                printf("%d", rj->data);
                 if (a.dimensions==3)
                 {
                     printf("[");
-                    RangeJagged3D* r1 = r->head;
+                    RangeJagged3D* r1 = rj->head;
                     while (r1->next)
                     {
                         printf("%d, ", r1->data);
@@ -64,13 +67,15 @@ int main()
                     printf("%d]",r1->data);  
                 }
                 printf(", ");
-                r = r->next;
+                rj = rj->next;
             }
-            printf("%d), ", r->data);
-            printf("basicElemntType = %s>", enumtochar[a.t]);
+            printf("%d), ", rj->data);
+            printf("basicElemntType = %s>", type_to_char[a.t]);
             break;
         }
-    
+        printf("\n");
         ptr = ptr->next;
     }
+    printf("The End\n");
+    // fclose(f);
 }

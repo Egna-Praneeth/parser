@@ -106,6 +106,8 @@ void printTokenStream(Token* head){
 Token* add_token(Token* head, char* str, int line){
     Token* new = (Token*) malloc(sizeof(Token));
     new->token = (char* ) malloc(sizeof(str));
+    if(!strcmp(str,"–"))
+        strcpy(str,"-");
     strcpy(new->token, str);
     // deleteblankspaces(new->token);
     // if(new->token == " " || new->token == "\t")
