@@ -1,19 +1,55 @@
-pointer: address start
-
- Start -> declare assign
-
- declare
- start address 
-
-
-Start
-|
-declare -> assign 
-
-
-
-
- B
- | |
- var B
-     
+Start -> 'program' '(' ')' '{' declaration declList assignment assignList '}'
+declList -> declaration declList
+declList -> 'E'
+declaration -> 'declare' decl_num ':' decl_type
+decl_num -> 'var'
+decl_num -> decl_multi
+decl_multi -> 'list' 'of' 'variables' 'var' varList
+decl_type -> decl_norm
+decl_type -> decl_jagged_arr
+decl_type -> decl_rect_arr
+decl_norm -> type ';'
+decl_jagged_arr -> 'jagged' 'array' dims_jagged 'of' 'integer' ';' list_of_rows
+dims_jagged -> '[' 'number' '..' 'number' ']' '[' ']' bracket_pair
+bracket_pair -> '[' ']'
+bracket_pair -> 'E'
+list_of_rows -> row list_of_rows
+list_of_rows -> row
+row -> 'R1' '[' 'number' ']' ':' 'size' 'number' ':' 'values' '{' const_int_list other_dims '}'
+other_dims -> ';' const_int_list other_dims
+other_dims -> 'E'
+const_int_list -> 'number' const_int_list
+const_int_list -> 'E'
+decl_rect_arr -> 'array' '[' var_id '..' var_id ']' dims_rect 'of' 'integer' ';'
+dims_rect -> '[' var_id '..' var_id ']' dims_rect
+dims_rect -> 'E'
+var_id -> 'var'
+var_id -> 'number'
+type -> 'integer'
+type -> 'boolean'
+type -> 'real'
+varList -> 'var' varList
+varList -> 'E'
+assignList -> assignment assignList
+assignList -> 'E'
+assignment -> 'var' mutable '=' bool_arith ';'
+bool_arith -> arithExpression
+bool_arith -> factor andExpression boolExpression
+boolExpression -> '|||' factor andExpression boolExpression
+boolExpression -> 'E'
+andExpression -> '&&&' andExpression
+andExpression -> 'E'
+arithExpression -> mulExpression sumop arithExpression
+arithExpression -> mulExpression
+sumop -> '+'
+sumop -> '-'
+mulExpression -> factor mulop  mulExpression
+mulExpression -> factor
+mulop -> '*'
+mulop -> '/'
+factor -> 'number'
+factor -> 'var' mutable
+mutable ->  '[' var_id var_id_list ']'
+mutable -> 'E'
+var_id_list -> var_id var_id_list
+var_id_list -> 'E'

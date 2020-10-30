@@ -92,6 +92,8 @@ Token* add_token(Token* head, char* str, int line){
     new->token = (char* ) malloc(sizeof(str));
     strcpy(new->token, str);
     deleteblankspaces(new->token);
+    if(new->token == " ")
+        return head;
     new->next = NULL;
     new->line_num = line;
     int flag=0;
@@ -127,5 +129,6 @@ Token* add_token(Token* head, char* str, int line){
         temp = temp->next;
     }
     temp->next = new;
+    new->prev = temp;
     return head;
 }

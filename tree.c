@@ -55,7 +55,7 @@ int countTerminals(TreeNode* P){
     int count = 0;
     TreeNode* temp = P->child;
     while(temp){
-        if(temp->is_term == 1) count++;
+        if(temp->is_term == 1 && temp->symbol != E) count++;
         else count += countTerminals(temp);
         temp = temp->nextsib;
     }

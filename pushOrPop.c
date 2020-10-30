@@ -12,6 +12,7 @@ int pushRule(Grammar** G, TreeNode* parent, Symbol symbol, int searchfrom){
 			// parent->child = makeTreeNodelist(G[i], i, parent);
 			pushReverseGrammarRule(G[i] -> next, i, parent);
 		        Stack* st_temp = stack;
+			printf("rule = %d\n",i);
 			// 	while(st_temp)
 			// {   
 			// 	// i++;
